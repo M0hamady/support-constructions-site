@@ -12,6 +12,19 @@ code {
     monospace;
 }
 
+@keyframes zoomInBackground {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2); /* Adjust the scale as necessary */
+  }
+}
+
+.animate-zoomInBackground {
+  animation: zoomInBackground 30s ease-in-out infinite;
+}
+
 
 @tailwind base;
 @tailwind components;

@@ -5,7 +5,7 @@ import Button from '../common/Button';
 const HeroSection: React.FC = () => {
   return (
     <section
-      className="w-full h-screen flex flex-col justify-center items-center relative bg-cover bg-center"
+      className="w-full h-screen flex flex-col justify-center items-center relative bg-cover bg-center ani"
       style={{ backgroundImage: `url(${HeroImage})` }}
       aria-label="Hero section with construction services"
     >

@@ -10,6 +10,7 @@ module.exports = {
         accent: "#9E9195", // Accent color (darker shade for contrast)
         background: "#DCECE4", // Background color (light background)
         dark: "#1A1A1A", // Dark color (for text, borders, or deep background)
+        darker: "#333f4b", // Dark color (for text, borders, or deep background)
         light: "#F7F7F7", // Light color (for contrasting elements, sections, or cards)
         // Additional colors for flexibility
         neutral: "#F4F4F4", // Neutral tones for background or less emphasis
