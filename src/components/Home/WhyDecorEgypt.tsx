@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import CheckIcon from '@mui/icons-material/Check';
 import ConstructionIcon from '@mui/icons-material/Construction';
-import { Banner3d } from '../../assets/images';
+import { Banner, Banner3d } from '../../assets/images';
 
 const WhySupportConstruction: React.FC = () => {
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
+
   return (
-    <section className="w-full max-w-[1400px] mx-auto py-10 flex flex-col items-center px-4 text-right">
+    <section className="w-full max-w-[1400px] mx-auto py-10 flex flex-col items-center px-4">
+      {/* Title and Description Section */}
       <div className="flex flex-col items-start md:flex-row md:items-center gap-6 md:gap-10">
-        <div className="flex-1 flex flex-col justify-start items-start">
+        
+        {/* Text Section */}
+        <div className="flex-1 flex flex-col justify-start items-start" data-aos="fade-up">
           <h2 className="text-4xl font-bold text-gray-900 leading-snug mb-4">
             ليه شركة سبورت كونستراكشن هي الأفضل في التشطيبات؟
           </h2>
@@ -25,14 +34,24 @@ const WhySupportConstruction: React.FC = () => {
             ))}
           </div>
         </div>
-        <div className="flex-1">
-          <img src={Banner3d} alt="مشروع سبورت كونستراكشن" className="w-full h-full object-cover rounded-md shadow-md" />
+
+        {/* Image Section */}
+        <div className="flex-1" data-aos="fade-left">
+          <img
+            src={Banner3d}
+            alt="مشروع سبورت كونستراكشن - تشطيبات عالية الجودة وتصميمات مبتكرة"
+            className="w-full h-full object-cover rounded-md shadow-md"
+          />
         </div>
       </div>
-      <button className="mt-8 px-6 py-3 bg-[#010101] text-white font-semibold border-2 border-black flex items-center gap-3">
-        <ConstructionIcon className="text-[#baad87]" />
-        <span>خدماتنا</span>
-      </button>
+
+      {/* Services Button */}
+      <div className="mt-8" data-aos="zoom-in">
+        <button className="px-6 py-3 bg-[#010101] text-white font-semibold border-2 border-black flex items-center gap-3">
+          <ConstructionIcon className="text-[#baad87]" />
+          <span>خدماتنا</span>
+        </button>
+      </div>
     </section>
   );
 };
