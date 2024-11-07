@@ -30,12 +30,12 @@ const MobileNav = ({
   toggleMenu: () => void;
 }) => (
   <div
-    className={`fixed top-0 left-0 w-full h-full bg-[#DCE4EC] text-dark p-6 flex flex-col space-y-6 z-50 transition-all duration-500 ease-in-out ${
+    className={`fixed top-0 left-0 w-full h-full bg-[#baad87] text-white p-6 flex flex-col space-y-6 z-50 transition-all duration-500 ease-in-out ${
       isOpen ? "translate-y-0" : "translate-y-full"
     }`}
   >
     <button
-      className="self-end text-dark text-2xl p-2"
+      className="self-end text-white text-2xl p-2"
       onClick={toggleMenu}
       aria-label="Close menu"
     >
@@ -100,7 +100,7 @@ const NavLink = ({
   to: string;
   children: React.ReactNode;
 }) => (
-  <Link to={to} className="relative text-dark hover:text-[#9E9195] group">
+  <Link to={to} className="relative text-white hover:text-[#9E9195] group">
     {children}
     <div className="absolute bottom-0 left-0 w-full h-[2px] bg-[#9E9195] scale-x-0 group-hover:scale-x-100 transform origin-right transition-all duration-300"></div>
   </Link>
@@ -114,7 +114,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="bg-[#DCE4EC] text-dark px-4">
+    <nav className="bg-[#baad87] text-white px-4">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo Section */}
         <div className="">
