@@ -1,11 +1,11 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
-// Define the project type
+// Define the project type with an image property
 type Project = {
   id: number;
   name: string;
   description: string;
-  // Add any other properties as needed, like `status` or `createdAt`
+  image: string; // URL or path to the image
 };
 
 // Define the context type
@@ -16,25 +16,47 @@ type ProjectContextType = {
   deleteProject: (projectId: number) => void;
 };
 
+const PROJECTS_STORAGE_KEY = 'projects';
+
+// Helper function to load projects from localStorage
+const loadProjectsFromLocalStorage = (): Project[] => {
+  const storedProjects = localStorage.getItem(PROJECTS_STORAGE_KEY);
+  return storedProjects ? JSON.parse(storedProjects) : [];
+};
+
+// Helper function to save projects to localStorage
+const saveProjectsToLocalStorage = (projects: Project[]): void => {
+  localStorage.setItem(PROJECTS_STORAGE_KEY, JSON.stringify(projects));
+};
+
 // Create the context
 const ProjectContext = createContext<ProjectContextType | undefined>(undefined);
 
 // Create a provider component
 export const ProjectProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [projects, setProjects] = useState<Project[]>([]);
+  const [projects, setProjects] = useState<Project[]>(loadProjectsFromLocalStorage());
 
+  // Add a new project
   const addProject = (project: Project) => {
-    setProjects((prevProjects) => [...prevProjects, project]);
+    const newProjects = [...projects, project];
+    setProjects(newProjects);
+    saveProjectsToLocalStorage(newProjects); // Save to localStorage
   };
 
+  // Update an existing project
   const updateProject = (projectId: number, updatedProject: Project) => {
-    setProjects((prevProjects) =>
-      prevProjects.map((project) => (project.id === projectId ? updatedProject : project))
+    const updatedProjects = projects.map((project) =>
+      project.id === projectId ? updatedProject : project
     );
+    setProjects(updatedProjects);
+    saveProjectsToLocalStorage(updatedProjects); // Save to localStorage
   };
 
+  // Delete a project
   const deleteProject = (projectId: number) => {
-    setProjects((prevProjects) => prevProjects.filter((project) => project.id !== projectId));
+    const filteredProjects = projects.filter((project) => project.id !== projectId);
+    setProjects(filteredProjects);
+    saveProjectsToLocalStorage(filteredProjects); // Save to localStorage
   };
 
   return (

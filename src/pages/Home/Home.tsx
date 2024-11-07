@@ -2,6 +2,9 @@ import React from 'react';
 import HeroSection from '../../components/Home/HeroSection';
 import CardsContainer from '../../components/Home/Cards';
 import AboutUsSection from '../../components/Home/AboutUsSection';
+import DynamicSection from '../../components/Home/DynamicSection';
+import WhyDecorEgypt from '../../components/Home/WhyDecorEgypt';
+import CreativeDesigns from '../../components/Home/CreativeDesigns';
 
 const Home: React.FC = () => {
   return (
@@ -9,7 +12,10 @@ const Home: React.FC = () => {
       <HeroSection />  {/* Use the HeroSection component */}
       <CardsContainer />
 
-      <AboutUsSection /> 
+      <AboutUsSection />
+      <DynamicSection /> 
+      <WhyDecorEgypt />
+      <CreativeDesigns />
       {/* You can add other sections or content below here */}
     </div>
   );
