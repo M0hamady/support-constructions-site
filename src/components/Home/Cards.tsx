@@ -41,35 +41,39 @@ const Card: React.FC<CardProps> = ({ title, bgColor, textColor, iconBgColor, ico
   }, []);
 
   return (
-    <div
+    <article
       ref={cardRef}
       className={`w-full sm:w-auto flex justify-center items-center p-2 sm:p-0 transition-opacity duration-700 ${
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}
       style={{ transitionDelay: `${delay}ms` }}
+      aria-labelledby={`card-title-${title}`}
     >
       <div className={`flex flex-col sm:flex-row items-start ${bgColor} sm:items-center py-[15px] sm:py-[30px] w-full max-w-[350px]`}>
         <div className="flex-grow flex flex-row gap-3 justify-center w-full items-center px-4 sm:px-10 py-2 max-sm:justify-around">
-          <div className={`text-right ${textColor} text-lg sm:text-2xl font-bold font-['Cairo'] leading-snug w-5/6`}>
+          <h2 id={`card-title-${title}`} className={`text-right ${textColor} text-lg sm:text-2xl font-bold font-['Cairo'] leading-snug w-5/6`}>
             {title}
-          </div>
-          <div className={`h-10 w-10 ${iconBgColor} flex items-center justify-center`}>
+          </h2>
+          <div className={`h-10 w-10 ${iconBgColor} flex items-center justify-center`} aria-hidden="true">
             {icon}
           </div>
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 
 const CardsContainer: React.FC = () => (
-  <div className="w-full max-w-[1400px] mx-auto flex flex-wrap sm:flex-nowrap justify-center items-center p-4 bg-white">
+  <section
+    className="w-full max-w-[1400px] mx-auto flex flex-wrap sm:flex-nowrap justify-center items-center p-4 bg-white"
+    aria-label="Services offered"
+  >
     <Card
       title="البيت الذكي"
       bgColor="bg-[#baad87]/50"
       textColor="text-black"
       iconBgColor="bg-[#010101]"
-      icon={<HomeIcon style={{ color: '#baad87', fontSize: '2rem' }} />}
+      icon={<HomeIcon aria-label="Home Icon" style={{ color: '#baad87', fontSize: '2rem' }} />}
       delay={100}
     />
     <Card
@@ -77,7 +81,7 @@ const CardsContainer: React.FC = () => (
       bgColor="bg-[#baad87]/60"
       textColor="text-black"
       iconBgColor="bg-[#010101]"
-      icon={<BuildIcon style={{ color: '#baad87', fontSize: '2rem' }} />}
+      icon={<BuildIcon aria-label="Build Icon" style={{ color: '#baad87', fontSize: '2rem' }} />}
       delay={200}
     />
     <Card
@@ -85,7 +89,7 @@ const CardsContainer: React.FC = () => (
       bgColor="bg-[#baad87]"
       textColor="text-black"
       iconBgColor="bg-[#010101]"
-      icon={<LandscapeIcon style={{ color: '#baad87', fontSize: '2rem' }} />}
+      icon={<LandscapeIcon aria-label="Landscape Icon" style={{ color: '#baad87', fontSize: '2rem' }} />}
       delay={300}
     />
     <Card
@@ -93,10 +97,10 @@ const CardsContainer: React.FC = () => (
       bgColor="bg-[#070707]"
       textColor="text-white"
       iconBgColor="bg-[#baad87]"
-      icon={<DesignServicesIcon style={{ color: '#010101', fontSize: '2rem' }} />}
+      icon={<DesignServicesIcon aria-label="Interior Design Icon" style={{ color: '#010101', fontSize: '2rem' }} />}
       delay={400}
     />
-  </div>
+  </section>
 );
 
 export default CardsContainer;
