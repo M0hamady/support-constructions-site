@@ -4,6 +4,7 @@ import 'aos/dist/aos.css';
 import CheckIcon from '@mui/icons-material/Check';
 import ConstructionIcon from '@mui/icons-material/Construction';
 import { Banner, Banner3d } from '../../assets/images';
+import { Link } from 'react-router-dom';
 
 const WhySupportConstruction: React.FC = () => {
   useEffect(() => {
@@ -60,10 +61,10 @@ const WhySupportConstruction: React.FC = () => {
 
       {/* Services Button */}
       <div className="mt-8" data-aos="zoom-in">
-        <button className="px-6 py-3 bg-[#010101] text-white font-semibold border-2 border-black flex items-center gap-3">
+        <Link to={'/services'} className="px-6 py-3 bg-[#010101] text-white font-semibold border-2 border-black flex items-center gap-3">
           <ConstructionIcon className="text-[#baad87]" />
           <span>خدماتنا</span>
-        </button>
+        </Link>
       </div>
     </section>
   );

@@ -3,6 +3,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import ViewComfyIcon from '@mui/icons-material/ViewComfy';
 import { Banner } from '../../assets/images';
+import { Link } from 'react-router-dom';
 
 const CreativeDesigns: React.FC = () => {
   useEffect(() => {
@@ -46,10 +47,10 @@ const CreativeDesigns: React.FC = () => {
 
       {/* Call to Action Button */}
       <div className="mt-8" data-aos="fade-up" data-aos-delay="400">
-        <button className="px-6 py-3 bg-[#010101] text-white font-semibold border-2 border-black flex items-center gap-3">
+      <Link to={'/projects'}  className="px-6 py-3 bg-[#010101] text-white font-semibold border-2 border-black flex items-center gap-3">
           <ViewComfyIcon className="text-[#baad87]" />
           <span>شوف مشاريعنا</span>
-        </button>
+        </Link>
       </div>
     </section>
   );

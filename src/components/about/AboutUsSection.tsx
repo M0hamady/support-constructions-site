@@ -4,6 +4,7 @@ import AOS from "aos"; // Import AOS
 import "aos/dist/aos.css"; // Import AOS CSS
 import { Banner } from "../../assets/images"; // Correct image import
 import BannerSection from "../common/BannerSection";
+import { Link } from "react-router-dom";
 
 const AboutUsSection: React.FC = () => {
   useEffect(() => {
@@ -78,10 +79,10 @@ const AboutUsSection: React.FC = () => {
 
           {/* "Browse Projects" Button */}
           <div className="w-full flex justify-end mt-8" data-aos="fade-up">
-            <button className="flex items-center justify-center bg-[#010101] text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-[#baad87] transition-colors duration-300">
+            <Link to={'/prices'} className="flex items-center justify-center bg-[#010101] text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-[#baad87] transition-colors duration-300">
               <ArrowForward className="mr-3 text-xl" /> {/* MUI Arrow icon */}
               <span>تصفح المشاريع</span>
-            </button>
+            </Link>
           </div>
         </div>
       </div>
