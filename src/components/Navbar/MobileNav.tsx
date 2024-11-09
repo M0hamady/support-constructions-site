@@ -19,7 +19,7 @@ const Nav: React.FC = () => {
   return (
     <nav className="bg-primary text-white px-4 fixed bottom-0 w-full md:hidden shadow-lg z-50">
       {/* Mobile Only Layout */}
-      <div className="w-full flex justify-between items-center gap-4 px-4 py-3">
+      <div className="w-full flex justify-between items-center gap-4 px-4 py-3" dir='rtl' >
         {links.map((link, index) => (
           <div
             key={index}

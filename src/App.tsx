@@ -32,7 +32,7 @@ const App: React.FC = () => {
 
   return (
     <ProjectProvider>
-      <Router>
+      <Router  >
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
