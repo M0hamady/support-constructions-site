@@ -25,10 +25,12 @@ const Nav: React.FC = () => {
             key={index}
             className="flex flex-col justify-center items-center text-center transition-all duration-300 ease-in-out hover:bg-[#444] p-2 rounded-md"
           >
+              <Link to={link.to} className="hover:text-secondary">
             <div className="text-2xl">{link.icon}</div>
             <div className="h-fit text-white text-[14px] font-medium font-['Cairo'] leading-[18px] mt-1">
-              <Link to={link.to} className="hover:text-secondary">{link.text}</Link>
+              {link.text}
             </div>
+              </Link>
           </div>
         ))}
       </div>
