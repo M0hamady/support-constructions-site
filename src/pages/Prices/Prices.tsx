@@ -6,7 +6,7 @@ import { Banner } from '../../assets/images'
 export default function Prices() {
   return (
     <div dir='rtl' >
-      <BannerSection backgroundImage={Banner} firstWord='hgfhrhj' />
+      <BannerSection backgroundImage={Banner} firstWord='باقاتنا' />
       <PackageDetails />
     </div>
   )

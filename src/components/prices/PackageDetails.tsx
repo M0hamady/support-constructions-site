@@ -8,20 +8,28 @@ import {
   Brush as PaintIcon,
   Build as ToolsIcon,
   Settings as SettingsIcon,
-  Phone as PhoneIcon
+  Phone as PhoneIcon,
 } from '@mui/icons-material';
 
 AOS.init();
 
 // Reusable Button Component
-const ContactButton: React.FC = () => (
-  <button
-    className="bg-[#BAAD87] text-white py-3 px-8 rounded-full hover:bg-[#9E9195] transition-colors duration-300 flex items-center justify-center"
-    onClick={() => window.location.href = "tel:+201208136809"}
-  >
-    <PhoneIcon className="mr-2" /> اتصل بنا للحصول على المزيد من التفاصيل
-  </button>
-);
+const ContactButton: React.FC = () => {
+  const sendMessage = () => {
+    const message = encodeURIComponent("مرحبا، أرغب في معرفة المزيد عن خدمات التشطيب.");
+    const whatsappUrl = `https://wa.me/201558585914?text=${message}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  return (
+    <button
+      className="bg-[#BAAD87] text-white py-3 px-8 rounded-full hover:bg-[#9E9195] transition-colors duration-300 flex items-center justify-center"
+      onClick={sendMessage}
+    >
+      <PhoneIcon className="mr-2" /> اتصل بنا للحصول على المزيد من التفاصيل
+    </button>
+  );
+};
 
 // Service Section Component
 const ServiceSection: React.FC<{ title: string; icon: React.ReactNode; items: string[] }> = ({ title, icon, items }) => (
@@ -41,7 +49,11 @@ const ServiceSection: React.FC<{ title: string; icon: React.ReactNode; items: st
 const Package: React.FC<{ title: string; services: { title: string; icon: React.ReactNode; items: string[] }[] }> = ({ title, services }) => (
   <div className="bg-white rounded-lg shadow-lg p-6 mb-10 hover:shadow-xl transition-shadow duration-300" data-aos="fade-up">
     <h2 className="text-2xl font-semibold text-[#BAAD87] text-right flex items-center">
-      <ToolsIcon className="mr-2" /> {title}
+       ---------------------------
+         <br/>
+        {title}
+         <br/>
+      ---------------------------
     </h2>
     {services.map((service, index) => (
       <ServiceSection key={index} title={service.title} icon={service.icon} items={service.items} />
@@ -86,7 +98,7 @@ const PackageDetails: React.FC = () => (
               'تأسيس وتركيب لوحة خدمات للراوتر والدش.',
               'تأسيس الجبسن بورد اسلاك 2 ملم للأسبوتات.',
               'تركيب ليد دوبل لبيت النور الداخلي 💡.',
-              'تركيب اوشاش صانش وفيش ومفاتيح كهرباء.'
+              'تركيب اوشاش صانش وفيش ومفاتيح كهرباء.',
             ]
           },
           {

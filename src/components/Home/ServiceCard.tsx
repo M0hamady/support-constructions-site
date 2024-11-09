@@ -5,12 +5,15 @@ import BrushIcon from '@mui/icons-material/Brush';
 import BuildIcon from '@mui/icons-material/Build';
 import SecurityIcon from '@mui/icons-material/Security';
 
-const ServiceCard: React.FC<{ title: string; description: string; buttonText: string; Icon: React.ElementType }> = ({
-  title,
-  description,
-  buttonText,
-  Icon,
-}) => {
+const WHATSAPP_NUMBER = "00201558585914";
+
+const ServiceCard: React.FC<{
+  title: string;
+  description: string;
+  buttonText: string;
+  Icon: React.ElementType;
+  whatsappMessage: string;
+}> = ({ title, description, buttonText, Icon, whatsappMessage }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const cardRef = useRef<HTMLDivElement | null>(null);
 
@@ -18,26 +21,22 @@ const ServiceCard: React.FC<{ title: string; description: string; buttonText: st
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsFlipped(true);
-          } else {
-            setIsFlipped(false);
-          }
+          setIsFlipped(entry.isIntersecting);
         });
       },
       { threshold: 0.9 }
     );
 
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
-    }
+    if (cardRef.current) observer.observe(cardRef.current);
 
     return () => {
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current);
-      }
+      if (cardRef.current) observer.unobserve(cardRef.current);
     };
   }, []);
+
+  const handleWhatsAppClick = () => {
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
+  };
 
   return (
     <div
@@ -85,6 +84,7 @@ const ServiceCard: React.FC<{ title: string; description: string; buttonText: st
             variant="contained"
             style={{ backgroundColor: '#baad87', color: '#000' }}
             className="font-bold rounded-full mt-4"
+            onClick={handleWhatsAppClick}
           >
             {buttonText}
           </Button>
@@ -107,24 +107,28 @@ const ServicesSection: React.FC = () => {
           description="نوفر تصاميم داخلية مميزة تجمع بين الجمال والراحة وفقاً لأحدث المعايير والأساليب العالمية."
           buttonText="طلب الخدمة"
           Icon={HomeIcon}
+          whatsappMessage="مرحبًا، أود طلب خدمة التصميمات الداخلية."
         />
         <ServiceCard
           title="التشطيبات والديكورات"
           description="فريقنا يعتني بأدق تفاصيل التشطيبات والديكورات لتقديم تجربة فريدة من نوعها تعكس أناقتك."
           buttonText="طلب الخدمة"
           Icon={BrushIcon}
+          whatsappMessage="مرحبًا، أود طلب خدمة التشطيبات والديكورات."
         />
         <ServiceCard
           title="الصيانة والتجهيزات"
           description="نقدم خدمات صيانة شاملة لكل ما تحتاجه من تجهيزات بناء بأسلوب محترف لضمان جودة عالية."
           buttonText="طلب الخدمة"
           Icon={BuildIcon}
+          whatsappMessage="مرحبًا، أود طلب خدمة الصيانة والتجهيزات."
         />
         <ServiceCard
           title="أنظمة الأمان"
           description="نوفر حلول أمان متكاملة لحماية منشآتك من خلال أنظمة متقدمة للتحكم والسلامة."
           buttonText="طلب الخدمة"
           Icon={SecurityIcon}
+          whatsappMessage="مرحبًا، أود طلب خدمة أنظمة الأمان."
         />
       </div>
     </section>
