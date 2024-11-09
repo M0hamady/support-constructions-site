@@ -11,6 +11,7 @@ import ContactUs from './pages/ContactUs/ContactUs';
 import { ProjectProvider } from './context/ProjectContext';
 import Nav from './components/Navbar/MobileNav';
 import Loading from './components/Loading';
+import Footer from './components/Footer/Footer';
 
 const App: React.FC = () => {
 
@@ -42,6 +43,7 @@ const App: React.FC = () => {
           <Route path="/topics" element={<Topics />} />
           <Route path="/contact-us" element={<ContactUs />} />
         </Routes>
+        <Footer />
         <Nav  />
       </Router>
     </ProjectProvider>
