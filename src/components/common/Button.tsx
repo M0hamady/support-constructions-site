@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface ButtonProps {
   link: string;
@@ -16,9 +17,9 @@ const Button: React.FC<ButtonProps> = ({ link, name, variant = 'fill' }) => {
   const buttonStyle = variant === 'fill' ? `${baseStyle} ${fillStyle}` : `${baseStyle} ${borderStyle}`;
 
   return (
-    <a href={link} className={buttonStyle}>
+    <Link to={link} className={buttonStyle}>
       {name}
-    </a>
+    </Link>
   );
 };
 

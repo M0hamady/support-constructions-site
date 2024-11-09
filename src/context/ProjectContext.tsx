@@ -1,76 +1,117 @@
-import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import axios from 'axios';
 
-// Define the project type with an image property
+// Define the project type with sections and comments
+type Image = {
+  id: number;
+  image: string;
+  description: string;
+};
+
+type Comment = {
+  id: number;
+  number: number;
+  message: string;
+};
+
+type Section = {
+  id: number;
+  name: string;
+  images: Image[];
+  comments: Comment[];
+};
+
 type Project = {
   id: number;
   name: string;
   description: string;
-  image: string; // URL or path to the image
+  country: string;
+  city: string;
+  agent: string;
+  image: string;
+  sections: Section[];
 };
 
-// Define the context type
 type ProjectContextType = {
   projects: Project[];
   addProject: (project: Project) => void;
   updateProject: (projectId: number, updatedProject: Project) => void;
   deleteProject: (projectId: number) => void;
+  fetchProjects: () => void; // New method for fetching projects
+  loading: boolean;
+  error: string | null;
 };
+
+const ProjectContext = createContext<ProjectContextType | undefined>(undefined);
 
 const PROJECTS_STORAGE_KEY = 'projects';
 
-// Helper function to load projects from localStorage
-const loadProjectsFromLocalStorage = (): Project[] => {
-  const storedProjects = localStorage.getItem(PROJECTS_STORAGE_KEY);
-  return storedProjects ? JSON.parse(storedProjects) : [];
-};
-
-// Helper function to save projects to localStorage
-const saveProjectsToLocalStorage = (projects: Project[]): void => {
+const saveProjectsToLocalStorage = (projects: Project[]) => {
   localStorage.setItem(PROJECTS_STORAGE_KEY, JSON.stringify(projects));
 };
 
-// Create the context
-const ProjectContext = createContext<ProjectContextType | undefined>(undefined);
-
-// Create a provider component
 export const ProjectProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [projects, setProjects] = useState<Project[]>(loadProjectsFromLocalStorage());
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // Add a new project
+  const fetchProjects = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get<Project[]>('https://supportconstruction.pythonanywhere.com/api/projects/');
+      console.log(response)
+      setProjects(response.data);
+      saveProjectsToLocalStorage(response.data); // Optional: Save to localStorage
+      setError(null);
+    } catch (err) {
+      setError('Failed to fetch projects. Please try again later.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const storedProjects = localStorage.getItem(PROJECTS_STORAGE_KEY);
+    if (storedProjects) {
+      setProjects(JSON.parse(storedProjects));
+    } else {
+      fetchProjects();
+    }
+  }, []);
+
   const addProject = (project: Project) => {
     const newProjects = [...projects, project];
     setProjects(newProjects);
-    saveProjectsToLocalStorage(newProjects); // Save to localStorage
+    saveProjectsToLocalStorage(newProjects);
   };
 
-  // Update an existing project
   const updateProject = (projectId: number, updatedProject: Project) => {
     const updatedProjects = projects.map((project) =>
       project.id === projectId ? updatedProject : project
     );
     setProjects(updatedProjects);
-    saveProjectsToLocalStorage(updatedProjects); // Save to localStorage
+    saveProjectsToLocalStorage(updatedProjects);
   };
 
-  // Delete a project
   const deleteProject = (projectId: number) => {
     const filteredProjects = projects.filter((project) => project.id !== projectId);
     setProjects(filteredProjects);
-    saveProjectsToLocalStorage(filteredProjects); // Save to localStorage
+    saveProjectsToLocalStorage(filteredProjects);
   };
 
   return (
-    <ProjectContext.Provider value={{ projects, addProject, updateProject, deleteProject }}>
+    <ProjectContext.Provider
+      value={{ projects, addProject, updateProject, deleteProject, fetchProjects, loading, error }}
+    >
       {children}
     </ProjectContext.Provider>
   );
 };
 
-// Custom hook to use the ProjectContext
 export const useProjectContext = () => {
   const context = useContext(ProjectContext);
   if (!context) {
-    throw new Error("useProjectContext must be used within a ProjectProvider");
+    throw new Error('useProjectContext must be used within a ProjectProvider');
   }
   return context;
 };

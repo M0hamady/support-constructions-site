@@ -44,7 +44,7 @@ const HeroSection: React.FC = () => {
       >
         <div className="w-full sm:w-auto mb-4 max-sm:m-0 sm:mb-0 flex justify-center">
           <Button
-            link="tel:+00201555099233"
+            link="tel:+201558585914"
             name="إتصل بنا"
             variant="border"
             aria-label="Call Sports Construction"
@@ -52,7 +52,7 @@ const HeroSection: React.FC = () => {
         </div>
         <div className="w-full sm:w-auto flex justify-center">
           <Button
-            link="#packages"
+            link="/prices"
             name="باقات التشطيب"
             variant="fill"
             aria-label="View finishing packages"
