@@ -11,7 +11,18 @@ const WhySupportConstruction: React.FC = () => {
   }, []);
 
   return (
-    <section className="w-full max-w-[1400px] mx-auto py-10 flex flex-col items-center px-4">
+    <section className="w-full max-w-[1400px] mx-auto py-10 flex flex-col items-center px-4" dir="rtl">
+      {/* SEO Meta Tags */}
+      <head>
+        <title>أفضل شركة تشطيبات داخلية وخارجية - سبورت كونستراكشن</title>
+        <meta name="description" content="شركة سبورت كونستراكشن هي الأفضل في التشطيبات الداخلية والخارجية في مصر، نقدم خدمات التصميم، التنفيذ، والإشراف على جميع أنواع المشاريع." />
+        <meta name="keywords" content="سبورت كونستراكشن, تشطيبات, التصميم, التنفيذ, إشراف, مصر, ديكورات, مشاريع بناء" />
+        <meta property="og:title" content="أفضل شركة تشطيبات داخلية وخارجية - سبورت كونستراكشن" />
+        <meta property="og:description" content="شركة سبورت كونستراكشن هي الأفضل في التشطيبات الداخلية والخارجية في مصر، نقدم خدمات التصميم، التنفيذ، والإشراف على جميع أنواع المشاريع." />
+        <meta property="og:image" content={Banner3d} />
+        <meta property="og:url" content="https://yourwebsite.com" />
+      </head>
+
       {/* Title and Description Section */}
       <div className="flex flex-col items-start md:flex-row md:items-center gap-6 md:gap-10">
         
@@ -40,6 +51,8 @@ const WhySupportConstruction: React.FC = () => {
           <img
             src={Banner3d}
             alt="مشروع سبورت كونستراكشن - تشطيبات عالية الجودة وتصميمات مبتكرة"
+            width="600" // Added width
+            height="400" // Added height
             className="w-full h-full object-cover rounded-md shadow-md"
           />
         </div>
