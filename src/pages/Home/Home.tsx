@@ -6,6 +6,7 @@ import DynamicSection from '../../components/Home/DynamicSection';
 import WhyDecorEgypt from '../../components/Home/WhyDecorEgypt';
 import CreativeDesigns from '../../components/Home/CreativeDesigns';
 import ServicesSection from '../../components/Home/ServiceCard';
+import OurTeamSection from '../../components/Home/OurTeamSection';
 
 const Home: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ const Home: React.FC = () => {
       <WhyDecorEgypt />
       {/* <CreativeDesigns /> */}
       <ServicesSection />
+      <OurTeamSection />
       {/* You can add other sections or content below here */}
     </div>
   );
