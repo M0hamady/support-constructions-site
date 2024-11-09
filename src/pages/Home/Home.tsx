@@ -7,6 +7,7 @@ import WhyDecorEgypt from '../../components/Home/WhyDecorEgypt';
 import CreativeDesigns from '../../components/Home/CreativeDesigns';
 import ServicesSection from '../../components/Home/ServiceCard';
 import OurTeamSection from '../../components/Home/OurTeamSection';
+import StatsSection from '../../components/Home/StatsSection';
 
 const Home: React.FC = () => {
   return (
@@ -20,6 +21,7 @@ const Home: React.FC = () => {
       {/* <CreativeDesigns /> */}
       <ServicesSection />
       <OurTeamSection />
+      <StatsSection />
       {/* You can add other sections or content below here */}
     </div>
   );
