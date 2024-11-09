@@ -22,9 +22,9 @@ const CreativeDesigns: React.FC = () => {
       <meta name="twitter:card" content="summary_large_image" />
 
       {/* Header Section */}
-      <div className="flex flex-col items-start md:flex-row md:items-center gap-6 md:gap-10">
-        <div className="flex-1 flex flex-col justify-start items-start" data-aos="fade-up">
-          <h2 className="text-4xl font-bold text-gray-900 leading-snug mb-4">
+      <div className="flex flex-col items-start md:flex-row md:items-center gap-6 md:gap-10"  >
+        <div className="flex-1 flex flex-col justify-start items-start" data-aos="fade-up" dir='rtl' >
+          <h2 className="text-4xl font-bold text-gray-900 leading-snug mb-4 text-right" >
             حلول إبداعية و مبتكرة في التصميم
           </h2>
           <div className="w-16 h-1 bg-[#baad87] mb-6" />
