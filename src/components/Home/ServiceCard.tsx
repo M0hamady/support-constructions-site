@@ -5,7 +5,7 @@ import BrushIcon from '@mui/icons-material/Brush';
 import BuildIcon from '@mui/icons-material/Build';
 import SecurityIcon from '@mui/icons-material/Security';
 
-const WHATSAPP_NUMBER = "00201558585914";
+const WHATSAPP_NUMBER = "201558585914"; // Correct format
 
 const ServiceCard: React.FC<{
   title: string;
