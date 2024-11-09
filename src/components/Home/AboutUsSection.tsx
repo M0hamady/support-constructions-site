@@ -18,20 +18,17 @@ const AboutUsSection: React.FC = () => {
         <div className="w-full md:w-[466.66px] flex justify-center items-start" data-aos="fade-up">
           <div className="flex flex-col justify-start items-center w-full">
             <div className="relative pt-[158px] flex flex-col justify-center items-center w-full">
-              <div className="w-[150px] h-[150px] origin-top-left rotate-45 border-8 border-[#baad87]"></div>
+              <div className="w-[150px] h-[150px] origin-top-left rotate-45 border-8 border-[#baad87] mb-[60px]"></div>
               <div className="flex flex-col justify-center items-center">
-                <div className="relative w-[446.66px] h-[228.19px]">
-                  <div className="absolute left-0 top-[-40px] flex flex-col justify-start items-center h-[270.80px] pl-[87.56px] pr-[87.58px]">
-                    <div className="flex flex-col justify-start items-center pb-[17.90px] gap-[2.90px]">
-                      <div className="text-center text-[#010101] text-[270px] font-bold font-['Tajawal'] leading-[189px]">
-                        8
-                      </div>
-                      <div className="text-center text-[#010101] text-[86px] font-bold font-['Tajawal'] leading-[60.20px]">
-                        سنوات
-                      </div>
+                <div className="flex flex-col justify-center items-center">
+                  <div className="flex flex-col justify-center items-center gap-[2.90px]">
+                    <div className="text-center text-[#010101] text-[270px] font-bold font-['Tajawal'] leading-[189px]">
+                      8
+                    </div>
+                    <div className="text-center text-[#010101] text-[86px] font-bold font-['Tajawal'] leading-[60.20px]">
+                      سنوات
                     </div>
                   </div>
-                  <div className="absolute left-0 top-[212.19px] w-[446.66px] h-4"></div>
                 </div>
               </div>
             </div>

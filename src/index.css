@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 
 code {
@@ -24,6 +25,7 @@ code {
 .animate-zoomInBackground {
   animation: zoomInBackground 30s ease-in-out infinite;
 }
+
 .spinner-container {
   width: 350px;
   height: 350px;
@@ -70,7 +72,7 @@ code {
   font-family: 'Cairo', sans-serif;
   font-size: 20px;
   color: #ffffff;
-  animation: slideUp 3s ease-in-out ;
+  animation: slideUp 2s ease-in-out infinite;
 }
 
 @keyframes slideUp {
@@ -87,7 +89,6 @@ code {
     opacity: 0;
   }
 }
-
 
 @tailwind base;
 @tailwind components;
