@@ -24,6 +24,69 @@ code {
 .animate-zoomInBackground {
   animation: zoomInBackground 30s ease-in-out infinite;
 }
+.spinner-container {
+  width: 350px;
+  height: 350px;
+  border-radius: 100%;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 1) 0%, rgb(220, 220, 220) 40%, rgb(170, 170, 170) 98%, rgb(10, 10, 10) 100%);
+  position: relative;
+}
+
+.spinner {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  border-bottom: 0 solid #ffffff05;
+  
+  box-shadow:
+    0 -10px 20px 20px #ffffff40 inset,
+    0 -5px 15px 10px #ffffff50 inset,
+    0 -2px 5px #ffffff80 inset,
+    0 -3px 2px #ffffffBB inset,
+    0 2px 0px #ffffff,
+    0 2px 3px #ffffff,
+    0 5px 5px #ffffff90,
+    0 10px 15px #ffffff60,
+    0 10px 20px 20px #ffffff40;
+  
+  filter: blur(3px);
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Text Styling and Animation */
+.text-container {
+  position: absolute;
+  bottom: -40px; /* Adjust the space between spinner and text */
+  width: 100%;
+  text-align: center;
+  font-family: 'Cairo', sans-serif;
+  font-size: 20px;
+  color: #ffffff;
+  animation: slideUp 3s ease-in-out ;
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+}
 
 
 @tailwind base;

@@ -21,7 +21,7 @@ const App: React.FC = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false); // Set loading to false after a delay
-    }, 2000); // 2 seconds for example
+    }, 4000); // 2 seconds for example
 
     return () => clearTimeout(timer);
   }, []);
