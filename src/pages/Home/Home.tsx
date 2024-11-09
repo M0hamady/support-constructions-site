@@ -11,7 +11,7 @@ import StatsSection from '../../components/Home/StatsSection';
 
 const Home: React.FC = () => {
   return (
-    <div className='flex mb-[100px]  w-full max-w-[98vw]   h-full min-h-screen  flex-col'> 
+    <div className='flex mb-[100px]  w-full   h-full min-h-screen  flex-col'> 
       <HeroSection />  {/* Use the HeroSection component */}
       <CardsContainer />
 
