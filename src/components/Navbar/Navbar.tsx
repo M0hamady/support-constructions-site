@@ -11,16 +11,17 @@ import {
 } from "@mui/icons-material";
 
 const DesktopNav = () => (
-  <div className="hidden md:flex space-x-6">
-    <NavLink to="/">Home</NavLink>
-    <NavLink to="/about-us">About Us</NavLink>
-    <NavLink to="/services">Services</NavLink>
-    <NavLink to="/projects">Projects</NavLink>
-    <NavLink to="/prices">Prices</NavLink>
-    <NavLink to="/topics">Topics</NavLink>
-    <NavLink to="/contact-us">Contact Us</NavLink>
+  <div className="hidden md:flex space-x-6 rtl:space-x-reverse">
+    <NavLink to="/">الرئيسية</NavLink>
+    <NavLink to="/about-us">من نحن</NavLink>
+    <NavLink to="/services">الخدمات</NavLink>
+    <NavLink to="/projects">المشاريع</NavLink>
+    <NavLink to="/prices">الأسعار</NavLink>
+    <NavLink to="/topics">المواضيع</NavLink>
+    <NavLink to="/contact-us">تواصل معنا</NavLink>
   </div>
 );
+
 
 const MobileNav = ({
   isOpen,
