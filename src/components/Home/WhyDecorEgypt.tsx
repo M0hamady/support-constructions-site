@@ -14,11 +14,11 @@ const WhySupportConstruction: React.FC = () => {
     <section className="w-full max-w-[1400px] mx-auto py-10 flex flex-col items-center px-4" dir="rtl">
       {/* SEO Meta Tags */}
       <head>
-        <title>أفضل شركة تشطيبات داخلية وخارجية - سبورت كونستراكشن</title>
-        <meta name="description" content="شركة سبورت كونستراكشن هي الأفضل في التشطيبات الداخلية والخارجية في مصر، نقدم خدمات التصميم، التنفيذ، والإشراف على جميع أنواع المشاريع." />
-        <meta name="keywords" content="سبورت كونستراكشن, تشطيبات, التصميم, التنفيذ, إشراف, مصر, ديكورات, مشاريع بناء" />
-        <meta property="og:title" content="أفضل شركة تشطيبات داخلية وخارجية - سبورت كونستراكشن" />
-        <meta property="og:description" content="شركة سبورت كونستراكشن هي الأفضل في التشطيبات الداخلية والخارجية في مصر، نقدم خدمات التصميم، التنفيذ، والإشراف على جميع أنواع المشاريع." />
+        <title>أفضل شركة تشطيبات داخلية وخارجية - سابورت كونستراكشن</title>
+        <meta name="description" content="شركة سابورت كونستراكشن هي الأفضل في التشطيبات الداخلية والخارجية في مصر، نقدم خدمات التصميم، التنفيذ، والإشراف على جميع أنواع المشاريع." />
+        <meta name="keywords" content="سابورت كونستراكشن, تشطيبات, التصميم, التنفيذ, إشراف, مصر, ديكورات, مشاريع بناء" />
+        <meta property="og:title" content="أفضل شركة تشطيبات داخلية وخارجية - سابورت كونستراكشن" />
+        <meta property="og:description" content="شركة سابورت كونستراكشن هي الأفضل في التشطيبات الداخلية والخارجية في مصر، نقدم خدمات التصميم، التنفيذ، والإشراف على جميع أنواع المشاريع." />
         <meta property="og:image" content={Banner3d} />
         <meta property="og:url" content="https://yourwebsite.com" />
       </head>
@@ -29,11 +29,11 @@ const WhySupportConstruction: React.FC = () => {
         {/* Text Section */}
         <div className="flex-1 flex flex-col justify-start items-start" data-aos="fade-up">
           <h2 className="text-4xl font-bold text-gray-900 leading-snug mb-4">
-            ليه شركة سبورت كونستراكشن هي الأفضل في التشطيبات؟
+            ليه شركة سابورت كونستراكشن هي الأفضل في التشطيبات؟
           </h2>
           <div className="w-16 h-1 bg-[#baad87] mb-6" />
           <p className="text-lg text-[#9e9195] mb-4 leading-relaxed">
-            سبورت كونستراكشن تعتبر واحدة من أفضل الشركات المتخصصة في التشطيبات الداخلية والخارجية في مصر. 
+            سابورت كونستراكشن تعتبر واحدة من أفضل الشركات المتخصصة في التشطيبات الداخلية والخارجية في مصر. 
             بنوفر لك حلول شاملة بدايةً من التصميم المعماري لحد التشطيب الكامل بجودة عالية. معانا، تقدر تضمن أفضل تصميمات وديكورات بأحدث التقنيات لتلبية احتياجاتك بالكامل.
           </p>
           <div className="flex gap-8 mt-4">
@@ -50,7 +50,7 @@ const WhySupportConstruction: React.FC = () => {
         <div className="flex-1" data-aos="fade-up">
           <img
             src={Banner3d}
-            alt="مشروع سبورت كونستراكشن - تشطيبات عالية الجودة وتصميمات مبتكرة"
+            alt="مشروع سابورت كونستراكشن - تشطيبات عالية الجودة وتصميمات مبتكرة"
             width="600" // Added width
             height="400" // Added height
             className="w-full h-full object-cover rounded-md shadow-md"

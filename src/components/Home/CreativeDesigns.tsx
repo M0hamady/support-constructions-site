@@ -12,11 +12,11 @@ const CreativeDesigns: React.FC = () => {
   return (
     <section className="w-full max-w-[1400px] mx-auto py-10 flex flex-col items-center px-4 text-right">
       {/* SEO Enhancements */}
-      <h1 className="sr-only">حلول إبداعية في التصميم الداخلي والخارجي | سبورت كونستراكشن</h1>
-      <meta name="description" content="سبورت كونستراكشن تقدم حلول تصميم داخلي وخارجي مبتكرة بأعلى جودة. فريق محترف لتحويل أفكارك إلى حقيقة بتصميمات عصرية تناسب احتياجاتك." />
-      <meta name="keywords" content="تصميم داخلي, تصميم خارجي, تشطيبات, سبورت كونستراكشن, تصميم مبتكر, تصميم عصري" />
-      <meta property="og:title" content="حلول إبداعية في التصميم | سبورت كونستراكشن" />
-      <meta property="og:description" content="إكتشف حلول التصميم المبتكرة من سبورت كونستراكشن. خدمات تصميم داخلي وخارجي عالية الجودة تلبي احتياجاتك." />
+      <h1 className="sr-only">حلول إبداعية في التصميم الداخلي والخارجي | سابورت كونستراكشن</h1>
+      <meta name="description" content="سابورت كونستراكشن تقدم حلول تصميم داخلي وخارجي مبتكرة بأعلى جودة. فريق محترف لتحويل أفكارك إلى حقيقة بتصميمات عصرية تناسب احتياجاتك." />
+      <meta name="keywords" content="تصميم داخلي, تصميم خارجي, تشطيبات, سابورت كونستراكشن, تصميم مبتكر, تصميم عصري" />
+      <meta property="og:title" content="حلول إبداعية في التصميم | سابورت كونستراكشن" />
+      <meta property="og:description" content="إكتشف حلول التصميم المبتكرة من سابورت كونستراكشن. خدمات تصميم داخلي وخارجي عالية الجودة تلبي احتياجاتك." />
       <meta property="og:image" content={Banner} />
       <meta property="og:url" content="https://yourwebsite.com/creative-designs" />
       <meta name="twitter:card" content="summary_large_image" />
@@ -29,14 +29,14 @@ const CreativeDesigns: React.FC = () => {
           </h2>
           <div className="w-16 h-1 bg-[#baad87] mb-6" />
           <p className="text-lg text-[#9e9195] mb-4 leading-relaxed">
-            سبورت كونستراكشن بتقدم حلول تصميم مبتكرة وعملية لكل المساحات. فريقنا الاحترافي بيهتم بأدق التفاصيل عشان يوفر أفضل نتيجة بجودة عالية.
+            سابورت كونستراكشن بتقدم حلول تصميم مبتكرة وعملية لكل المساحات. فريقنا الاحترافي بيهتم بأدق التفاصيل عشان يوفر أفضل نتيجة بجودة عالية.
             مع خبرتنا الطويلة في السوق، بنقدر نحقق لكل عميل تصميمات خارجية وداخلية بشكل عصري يتناسب مع كل احتياجاتك وأسلوب حياتك.
           </p>
         </div>
         <div className="flex-1" data-aos="fade-up" data-aos-delay="200">
           <img
             src={Banner}
-            alt="تصميم داخلي مبتكر يعكس الأناقة والجودة العالية من سبورت كونستراكشن"
+            alt="تصميم داخلي مبتكر يعكس الأناقة والجودة العالية من سابورت كونستراكشن"
             width="600"
             height="400"
             className="w-full h-full object-cover rounded-md shadow-md"

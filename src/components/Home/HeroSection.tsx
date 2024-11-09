@@ -20,7 +20,7 @@ const HeroSection: React.FC = () => {
         className={`w-full text-center px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 pt-20 z-10 transition-opacity duration-1000 ${titleInView ? 'opacity-100' : 'opacity-0'}`}
       >
         <h1 className="text-white max-sm:text-3xl xl:text-2xl font-extrabold font-['Cairo'] leading-tight max-w-4xl border-b-2 pb-4 mx-auto mb-4">
-          سبورت كونستركشن - شركة تشطيب في مصر بأفكار ابداعية مبتكرة
+          سابورت كونستركشن - شركة تشطيب في مصر بأفكار ابداعية مبتكرة
         </h1>
       </header>
 
@@ -30,7 +30,7 @@ const HeroSection: React.FC = () => {
         className={`w-full text-center px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 mt-6 z-10 max-sm:hidden transition-opacity duration-1000 ${descInView ? 'opacity-100' : 'opacity-0'}`}
       >
         <p className="text-white/90 text-sm sm:text-base md:text-lg lg:text-xl xl:text-xs font-normal font-['Cairo'] leading-relaxed max-w-4xl mx-auto mb-4">
-          شركة سبورت كونستركشن احد افضل شركات تشطيب الشقق والفلل في مصر. لذلك تعد الطريقة المثالية لتصميم وتشطيب.
+          شركة سابورت كونستركشن احد افضل شركات تشطيب الشقق والفلل في مصر. لذلك تعد الطريقة المثالية لتصميم وتشطيب.
         </p>
         <p className="text-white/90 text-sm sm:text-base md:text-lg lg:text-xl xl:text-xs font-normal font-['Cairo'] leading-relaxed max-w-4xl mx-auto mb-6">
           سنوات في سوق المعمار والابداع المصري. حيث حازت على ثقة العديد من العملاء من خلال تنفيذ أفضل تصميمات الديكور الكلاسيكية والحديثة بطريقة احترافية لجميع أنواع الوحدات السكنية والتجارية والفلل والقصور داخل وخارج مصر.
