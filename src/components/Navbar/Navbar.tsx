@@ -17,7 +17,7 @@ const DesktopNav = () => (
     <NavLink to="/services">الخدمات</NavLink>
     <NavLink to="/projects">المشاريع</NavLink>
     <NavLink to="/prices">الأسعار</NavLink>
-    <NavLink to="/topics">المواضيع</NavLink>
+    {/* <NavLink to="/topics">المواضيع</NavLink> */}
     <NavLink to="/contact-us">تواصل معنا</NavLink>
   </div>
 );
