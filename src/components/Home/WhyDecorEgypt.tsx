@@ -36,7 +36,7 @@ const WhySupportConstruction: React.FC = () => {
         </div>
 
         {/* Image Section */}
-        <div className="flex-1" data-aos="fade-left">
+        <div className="flex-1" data-aos="fade-up">
           <img
             src={Banner3d}
             alt="مشروع سبورت كونستراكشن - تشطيبات عالية الجودة وتصميمات مبتكرة"
