@@ -1,134 +1,62 @@
-import React, { useState, useEffect } from 'react';
+// ProjectPreviewSection.tsx
+import React, { useEffect } from 'react';
+import { Share } from '@mui/icons-material'; // Import MUI icons
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // Import AOS CSS
 import { useProjectContext } from '../../context/ProjectContext';
+import { Banner } from '../../assets/images';
+
+interface BannerProps {
+ 
+}
 
 const Projects: React.FC = () => {
-  const { projects, addProject, updateProject, deleteProject } = useProjectContext();
+  const { projects } = useProjectContext(); // Get the projects from context
 
-  const [newProject, setNewProject] = useState({ id: 0, name: '', description: '', image: '' });
-  const [isEditing, setIsEditing] = useState(false);
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
-
+  // Initialize AOS for animation
   useEffect(() => {
-    if (!isEditing) {
-      setNewProject({ id: 0, name: '', description: '', image: '' });
-      setImagePreview(null);
-    } else if (newProject.image) {
-      setImagePreview(newProject.image);
-    }
-  }, [isEditing]);
-
-  const handleAddProject = () => {
-    if (newProject.name && newProject.description && newProject.image) {
-      addProject({ ...newProject, id: Date.now() });
-      setNewProject({ id: 0, name: '', description: '', image: '' });
-      setImagePreview(null);
-    }
-  };
-
-  const handleEditProject = (projectId: number) => {
-    const projectToEdit = projects.find((project) => project.id === projectId);
-    if (projectToEdit) {
-      setNewProject(projectToEdit);
-      setIsEditing(true);
-    }
-  };
-
-  const handleUpdateProject = () => {
-    if (newProject.name && newProject.description && newProject.image) {
-      updateProject(newProject.id, newProject);
-      setNewProject({ id: 0, name: '', description: '', image: '' });
-      setIsEditing(false);
-      setImagePreview(null);
-    }
-  };
-
-  const handleDeleteProject = (projectId: number) => {
-    deleteProject(projectId);
-  };
-
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result as string);
-        setNewProject({ ...newProject, image: reader.result as string });
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+    AOS.init({ duration: 1000 });
+  }, []);
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Projects</h1>
-
-      <div className="mb-6">
-        <div className="mb-4">
-          <label htmlFor="name" className="block text-sm font-medium">Project Name</label>
-          <input
-            id="name"
-            type="text"
-            placeholder="Project Name"
-            value={newProject.name}
-            onChange={(e) => setNewProject({ ...newProject, name: e.target.value })}
-            className="border p-2 w-full"
-          />
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="description" className="block text-sm font-medium">Project Description</label>
-          <input
-            id="description"
-            type="text"
-            placeholder="Project Description"
-            value={newProject.description}
-            onChange={(e) => setNewProject({ ...newProject, description: e.target.value })}
-            className="border p-2 w-full"
-          />
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="image" className="block text-sm font-medium">Project Image</label>
-          <input
-            id="image"
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-            className="border p-2 w-full"
-          />
-          {imagePreview && <img src={imagePreview} alt="Project Preview" className="mt-4 w-40 h-40 object-cover" />}
-        </div>
-
-        <div>
-          {isEditing ? (
-            <button onClick={handleUpdateProject} className="bg-blue-500 text-white px-4 py-2">
-              Update Project
-            </button>
-          ) : (
-            <button onClick={handleAddProject} className="bg-green-500 text-white px-4 py-2">
-              Add Project
-            </button>
-          )}
+    <div>
+      {/* Top Banner Section */}
+      <div
+        className="h-[344px] px-4 md:px-8 pt-[100px] pb-[63px] flex flex-col justify-center items-center bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url(${Banner})`, // Use the background image for the top banner
+        }}
+      >
+        <div className="text-center text-white text-4xl font-bold font-['Tajawal'] leading-[50.40px]">
+          {'مشاريعنا'}
         </div>
       </div>
 
-      <ul>
-        {projects.map((project) => (
-          <li key={project.id} className="mb-4 p-4 border rounded">
-            {project.image && <img src={project.image} alt={project.name} className="mb-4 w-full h-[200px] object-cover rounded" />}
-            <h2 className="text-xl font-semibold">{project.name}</h2>
-            <p>{project.description}</p>
-            <div className="mt-2">
-              <button onClick={() => handleEditProject(project.id)} className="bg-blue-500 text-white px-2 py-1 mr-2">
-                Edit
-              </button>
-              <button onClick={() => handleDeleteProject(project.id)} className="bg-red-500 text-white px-2 py-1">
-                Delete
-              </button>
+      {/* Projects Preview Section */}
+      <div className="px-4 md:px-8 py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {projects.length > 0 ? (
+          projects.map((project, index) => (
+            <div
+              key={index}
+              className="border-2 border-gray-300 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all"
+              data-aos="fade-up" // Apply AOS animation for fade-up
+            >
+              <img src={project.image} alt={project.name} className="w-full h-56 object-cover" />
+              <div className="p-4">
+                <h3 className="text-xl font-semibold">{project.name}</h3>
+                <p className="text-sm text-gray-600 mt-2">{project.description}</p>
+              </div>
             </div>
-          </li>
-        ))}
-      </ul>
+          ))
+        ) : (
+          <p className="text-center text-white">No projects available.</p>
+        )}
+      </div>
+
+      {/* Share Icon Section */}
+      <div className="flex justify-center py-4">
+        <Share className="text-black text-2xl font-black" />
+      </div>
     </div>
   );
 };
