@@ -29,8 +29,8 @@ const SEOHelmet: React.FC = () => {
         property="og:description"
         content="شركة سابورت كونستركشن تقدم أفكارًا إبداعية مبتكرة في تصميمات الديكور والتشطيب لجميع أنواع الوحدات السكنية والتجارية والفلل والقصور."
       />
-      <meta property="og:image" content="https://example.com/your-image.jpg" />
-      <meta property="og:url" content="https://yourwebsite.com" />
+      <meta property="og:image" content="https://supportconstruction.com/your-image.jpg" />
+      <meta property="og:url" content="https://supportconstruction.com" />
       <meta property="og:type" content="website" />
 
       {/* Twitter Meta Tags */}
@@ -40,10 +40,10 @@ const SEOHelmet: React.FC = () => {
         name="twitter:description"
         content="شركة سابورت كونستركشن تقدم أفكارًا إبداعية مبتكرة في تصميمات الديكور والتشطيب لجميع أنواع الوحدات السكنية والتجارية والفلل والقصور."
       />
-      <meta name="twitter:image" content="https://example.com/your-image.jpg" />
+      <meta name="twitter:image" content="https://supportconstruction.com/your-image.jpg" />
 
       {/* Canonical Link */}
-      <link rel="canonical" href="https://yourwebsite.com" />
+      <link rel="canonical" href="https://supportconstruction.com" />
 
       {/* Google Fonts */}
       <link
