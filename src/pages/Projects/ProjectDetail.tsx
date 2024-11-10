@@ -5,6 +5,9 @@ import { useProjectContext } from '../../context/ProjectContext';
 import BannerSection from '../../components/common/BannerSection';
 import { Banner } from '../../assets/images';
 
+// Import MUI icons
+import { ContentCopy, Facebook, Twitter, WhatsApp } from '@mui/icons-material';
+
 // Modal Component to Display Image with Share Options
 const ImageModal: React.FC<{ image: string; onClose: () => void }> = ({ image, onClose }) => {
   const handleCopyToClipboard = () => {
@@ -45,28 +48,36 @@ const ImageModal: React.FC<{ image: string; onClose: () => void }> = ({ image, o
           ×
         </button>
         <div className="mt-4 flex justify-center gap-4">
+          {/* Copy URL Button */}
           <button
-            className="text-blue-500"
+            className="flex items-center gap-2 text-blue-500"
             onClick={handleCopyToClipboard}
           >
+            <ContentCopy />
             Copy URL
           </button>
+          {/* Facebook Share Button */}
           <button
-            className="text-blue-500"
+            className="flex items-center gap-2 text-blue-500"
             onClick={() => shareImage('facebook')}
           >
+            <Facebook />
             Share on Facebook
           </button>
+          {/* Twitter Share Button */}
           <button
-            className="text-blue-500"
+            className="flex items-center gap-2 text-blue-500"
             onClick={() => shareImage('twitter')}
           >
+            <Twitter />
             Share on Twitter
           </button>
+          {/* WhatsApp Share Button */}
           <button
-            className="text-green-500"
+            className="flex items-center gap-2 text-green-500"
             onClick={() => shareImage('whatsapp')}
           >
+            <WhatsApp />
             Share on WhatsApp
           </button>
         </div>
@@ -213,7 +224,7 @@ const ProjectDetail: React.FC = () => {
         ))}
       </div>
 
-      {/* Modal for Image */}
+      {/* Image Modal for Enlarged View */}
       {modalImage && <ImageModal image={modalImage} onClose={handleCloseModal} />}
     </div>
   );
