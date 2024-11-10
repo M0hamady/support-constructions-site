@@ -9,7 +9,7 @@ type Image = {
 };
 
 type Comment = {
-  id: number;
+  id?: number;
   number: number;
   message: string;
 };
@@ -38,8 +38,8 @@ type ProjectContextType = {
   updateProject: (projectId: number, updatedProject: Project) => void;
   deleteProject: (projectId: number) => void;
   fetchProjects: () => void;
-  addCommentToSection: (projectId: number, sectionId: number, comment: Omit<Comment, 'id'>) => void;
-  updateComment: (projectId: number, sectionId: number, commentId: number, updatedComment: Omit<Comment, 'id'>) => void;
+  addCommentToSection: (projectId: number, sectionId: number, comment: Comment) => void;
+  updateComment: (projectId: number, sectionId: number, commentId: number, updatedComment: Comment) => void;
   deleteComment: (projectId: number, sectionId: number, commentId: number) => void;
   loading: boolean;
   error: string | null;
@@ -108,19 +108,19 @@ export const ProjectProvider: React.FC<{ children: ReactNode }> = ({ children })
     saveProjectsToLocalStorage(filteredProjects);
   };
 
-  const addCommentToSection = async (projectId: number, sectionId: number, comment: Omit<Comment, 'id'>) => {
+  const addCommentToSection = async (projectId: number, sectionId: number, comment: Comment) => {
     try {
       const commentData = {
         message: comment.message,
         section: sectionId,
-        number: Date.now(),
+        number: comment.number, // Use the provided phone number here
       };
-
+  
       const response = await axios.post<Comment>(
         `https://supportconstruction.pythonanywhere.com/api/comments/`,
         commentData
       );
-
+  
       const updatedProjects = projects.map((project) =>
         project.id === projectId
           ? {
@@ -133,15 +133,15 @@ export const ProjectProvider: React.FC<{ children: ReactNode }> = ({ children })
             }
           : project
       );
-
+  
       setProjects(updatedProjects);
       saveProjectsToLocalStorage(updatedProjects);
     } catch (error) {
       console.error('Failed to add comment', error);
     }
   };
-
-  const updateComment = async (projectId: number, sectionId: number, commentId: number, updatedComment: Omit<Comment, 'id'>) => {
+  
+  const updateComment = async (projectId: number, sectionId: number, commentId: number, updatedComment: Comment) => {
     try {
       const response = await axios.put<Comment>(
         `https://supportconstruction.pythonanywhere.com/api/comments/${commentId}/`,

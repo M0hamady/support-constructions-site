@@ -8,10 +8,13 @@ import CreativeDesigns from '../../components/Home/CreativeDesigns';
 import ServicesSection from '../../components/Home/ServiceCard';
 import OurTeamSection from '../../components/Home/OurTeamSection';
 import StatsSection from '../../components/Home/StatsSection';
+import SEOHelmet from '../../SEOHelmet';
 
 const Home: React.FC = () => {
   return (
     <div className='flex mb-[100px]  w-full   h-full min-h-screen  flex-col'> 
+    <SEOHelmet />
+
       <HeroSection />  {/* Use the HeroSection component */}
       <CardsContainer />
 
