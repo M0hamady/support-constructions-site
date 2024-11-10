@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
         <div className="flex flex-col items-center gap-10">
           {/* Social Media Icons */}
           <div className="flex gap-4">
-            <IconButton
+            {/* <IconButton
               href="https://www.youtube.com/channel/YOUR_CHANNEL"
               target="_blank"
               rel="noopener noreferrer"
@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
               data-aos="zoom-in"
             >
               <YouTubeIcon fontSize="large" />
-            </IconButton>
+            </IconButton> */}
             <IconButton
               href="https://www.instagram.com/support_construction_"
               target="_blank"
@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
             >
               <InstagramIcon fontSize="large" />
             </IconButton>
-            <IconButton
+            {/* <IconButton
               href="https://twitter.com/YOUR_PROFILE"
               target="_blank"
               rel="noopener noreferrer"
@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
               data-aos="zoom-in"
             >
               <TwitterIcon fontSize="large" />
-            </IconButton>
+            </IconButton> */}
             <IconButton
               href="https://www.facebook.com/supportconstructioneg"
               target="_blank"
