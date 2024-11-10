@@ -19,6 +19,7 @@ const ProjectDetail: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalImage, setModalImage] = useState<string>('');
   const [rotationAngle, setRotationAngle] = useState<number>(0);
+  const [phoneNumber, setPhoneNumber] = useState<string>(''); // State for phone number
 
   if (!project) {
     return <p className="text-center text-xl text-red-500">Project not found</p>;
@@ -116,15 +117,22 @@ const ProjectDetail: React.FC = () => {
               {selectedSectionId === section.id ? (
                 <>
                   <h3 className="text-lg font-medium text-gray-700 mb-4">Add a Comment</h3>
+                
+                  <input
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    placeholder="Your phone number"
+                    className="w-full p-4 mb-4 border border-gray-300 rounded-lg"
+                  />
                   <textarea
                     value={newComment}
                     onChange={(e) => setNewComment(e.target.value)}
                     rows={4}
                     placeholder="Write your comment..."
-                    className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+                    className="w-full p-4 border border-gray-300 rounded-lg"
                   />
                   <button
-                    onClick={() => handleAddComment(section.id)} // Pass the section ID
+                    onClick={() => handleAddComment(section.id)}
                     className="mt-4 px-6 py-2 text-white bg-green-500 rounded-md hover:bg-green-600 transition duration-300"
                   >
                     Add Comment
@@ -132,7 +140,7 @@ const ProjectDetail: React.FC = () => {
                 </>
               ) : (
                 <button
-                  onClick={() => setSelectedSectionId(section.id)} // Select this section for commenting
+                  onClick={() => setSelectedSectionId(section.id)}
                   className="mt-4 px-6 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 transition duration-300"
                 >
                   Add Comment
@@ -163,8 +171,14 @@ const ProjectDetail: React.FC = () => {
               <h3 className="text-lg font-medium text-gray-700 mb-4">Comments</h3>
               {section.comments && section.comments.length > 0 ? (
                 section.comments.map((comment, index) => (
-                  <div key={index} className="bg-gray-200 p-4 rounded-lg mb-4 shadow-md">
-                    <p className="text-gray-800">{comment.message}</p>
+                  <div key={index} className="w-[551px] h-[96.5px] relative bg-[#14202a] rounded-lg p-4 mb-4">
+                    <div className="text-white text-base font-medium font-['Inter']">{comment.number }</div>
+                    <div className="text-[#bccbd6] text-sm font-light font-['Karla'] leading-[21.12px]">
+                      {comment.message}
+                    </div>
+                    <div className="text-[#bccbd6] text-sm font-light font-['Karla'] leading-[21.12px] mt-1">
+                      {comment.number}
+                    </div>
                   </div>
                 ))
               ) : (
