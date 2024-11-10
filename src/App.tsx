@@ -13,6 +13,7 @@ import Nav from './components/Navbar/MobileNav';
 import Loading from './components/Loading';
 import Footer from './components/Footer/Footer';
 import ProjectDetail from './pages/Projects/ProjectDetail';
+import ImagePreviewPage from './pages/Projects/ImagePreviewPage';
 
 const App: React.FC = () => {
 
@@ -41,6 +42,7 @@ const App: React.FC = () => {
           <Route path="/services" element={<Services />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/project/:id" element={<ProjectDetail />} />
+          <Route path="/image-preview" element={<ImagePreviewPage />} />
           <Route path="/prices" element={<Prices />} />
           <Route path="/topics" element={<Topics />} />
           <Route path="/contact-us" element={<ContactUs />} />
