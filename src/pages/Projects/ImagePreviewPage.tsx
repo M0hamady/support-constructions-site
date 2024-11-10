@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
 // Import MUI icons
@@ -7,6 +7,7 @@ import { ContentCopy, Facebook, Twitter, WhatsApp } from '@mui/icons-material';
 
 const ImagePreviewPage: React.FC = () => {
   const location = useLocation();
+  const navigate = useNavigate();  // Use the useNavigate hook for navigation
   const imageUrl = new URLSearchParams(location.search).get('image'); // Retrieve image URL from query params
 
   const [brightness, setBrightness] = useState(100);
@@ -23,6 +24,7 @@ const ImagePreviewPage: React.FC = () => {
     const url = encodeURIComponent(imageUrl || '');
     let shareUrl = '';
 
+    // Use the image URL for sharing, not the current page URL
     switch (platform) {
       case 'facebook':
         shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
@@ -37,11 +39,16 @@ const ImagePreviewPage: React.FC = () => {
         break;
     }
 
+    // Open the share URL in a new tab
     window.open(shareUrl, '_blank');
   };
 
   const filterStyle = {
     filter: `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturation}%)`,
+  };
+
+  const handleBackClick = () => {
+    navigate(-1);  // Navigate back to the previous page
   };
 
   return (
@@ -57,7 +64,16 @@ const ImagePreviewPage: React.FC = () => {
       </Helmet>
 
       <h1 className="text-4xl font-bold text-gray-800 mb-6">Image Preview</h1>
+
       <div className="flex flex-col items-center">
+        {/* Back Button */}
+        <button
+          onClick={handleBackClick}
+          className="mb-6 text-white bg-blue-500 p-2 rounded-md"
+        >
+          Back to Previous Page
+        </button>
+
         <img
           src={imageUrl || ''}
           alt="Preview"

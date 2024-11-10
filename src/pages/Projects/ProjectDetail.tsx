@@ -10,7 +10,7 @@ import { ContentCopy, Facebook, Twitter, WhatsApp, RotateRight } from '@mui/icon
 
 const ProjectDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate(); // Add useNavigate hook
+  const navigate = useNavigate();
   const { projects, addCommentToSection } = useProjectContext();
   const project = projects.find((proj) => proj.id === parseInt(id || '', 10));
 
@@ -66,6 +66,32 @@ const ProjectDetail: React.FC = () => {
         <meta property="og:image" content={project.image} />
         <meta property="og:url" content={`${window.location.origin}/projects/${project.id}`} />
         <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:title" content={project.name} />
+        <meta property="twitter:description" content={project.description} />
+        <meta property="twitter:image" content={project.image} />
+        
+        {/* Schema.org Markup for rich snippets */}
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Project",
+              "name": "${project.name}",
+              "description": "${project.description}",
+              "image": "${project.image}",
+              "url": "${window.location.origin}/projects/${project.id}",
+              "creator": {
+                "@type": "Organization",
+                "name": "Your Company Name"
+              },
+              "author": {
+                "@type": "Person",
+                "name": "Project Creator"
+              },
+              "sameAs": ["https://www.facebook.com/supportconstructioneg", "https://twitter.com/supportconstructioneg"]
+            }
+          `}
+        </script>
       </Helmet>
 
       <BannerSection backgroundImage={Banner} firstWord="تصافح جمال المشاريع" />
@@ -83,6 +109,37 @@ const ProjectDetail: React.FC = () => {
         {project.sections.map((section) => (
           <div key={section.id} className="mb-12">
             <h2 className="text-2xl font-semibold text-gray-700 mb-4">{section.name}</h2>
+
+            {/* Comment Section for each section */}
+            <div className="bg-gray-100 p-6 rounded-lg mb-6 shadow-md">
+              {/* Show "Add Comment" form only if the section is selected */}
+              {selectedSectionId === section.id ? (
+                <>
+                  <h3 className="text-lg font-medium text-gray-700 mb-4">Add a Comment</h3>
+                  <textarea
+                    value={newComment}
+                    onChange={(e) => setNewComment(e.target.value)}
+                    rows={4}
+                    placeholder="Write your comment..."
+                    className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+                  />
+                  <button
+                    onClick={() => handleAddComment(section.id)} // Pass the section ID
+                    className="mt-4 px-6 py-2 text-white bg-green-500 rounded-md hover:bg-green-600 transition duration-300"
+                  >
+                    Add Comment
+                  </button>
+                </>
+              ) : (
+                <button
+                  onClick={() => setSelectedSectionId(section.id)} // Select this section for commenting
+                  className="mt-4 px-6 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 transition duration-300"
+                >
+                  Add Comment
+                </button>
+              )}
+            </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {section.images.map((img) => (
                 <div key={img.id} className="group relative overflow-hidden rounded-lg shadow-md hover:scale-105 transition-transform duration-200">
@@ -99,6 +156,20 @@ const ProjectDetail: React.FC = () => {
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* Displaying comments for this section */}
+            <div className="mt-6">
+              <h3 className="text-lg font-medium text-gray-700 mb-4">Comments</h3>
+              {section.comments && section.comments.length > 0 ? (
+                section.comments.map((comment, index) => (
+                  <div key={index} className="bg-gray-200 p-4 rounded-lg mb-4 shadow-md">
+                    <p className="text-gray-800">{comment.message}</p>
+                  </div>
+                ))
+              ) : (
+                <p className="text-gray-600">No comments yet for this section.</p>
+              )}
             </div>
           </div>
         ))}
