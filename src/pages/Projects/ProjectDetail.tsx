@@ -105,6 +105,8 @@ const ProjectDetail: React.FC = () => {
         <meta property="og:title" content={project.name} />
         <meta property="og:description" content={project.description} />
         <meta property="og:image" content={project.image} />
+        <link rel="icon" href={project.image} />
+
         <meta
           property="og:url"
           content={`${window.location.origin}/projects/${project.id}`}
@@ -126,7 +128,7 @@ const ProjectDetail: React.FC = () => {
               "url": "${window.location.origin}/projects/${project.id}",
               "creator": {
                 "@type": "Organization",
-                "name": "Your Company Name"
+                "name": "support constructions"
               },
               "author": {
                 "@type": "Person",
