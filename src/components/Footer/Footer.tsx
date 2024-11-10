@@ -34,7 +34,7 @@ const Footer: React.FC = () => {
               <YouTubeIcon fontSize="large" />
             </IconButton>
             <IconButton
-              href="https://www.instagram.com/YOUR_PROFILE"
+              href="https://www.instagram.com/support_construction_"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
@@ -54,7 +54,7 @@ const Footer: React.FC = () => {
               <TwitterIcon fontSize="large" />
             </IconButton>
             <IconButton
-              href="https://www.facebook.com/YOUR_PROFILE"
+              href="https://www.facebook.com/supportconstructioneg"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"

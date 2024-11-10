@@ -34,8 +34,8 @@ const ContactButton: React.FC = () => {
 // Service Section Component
 const ServiceSection: React.FC<{ title: string; icon: React.ReactNode; items: string[] }> = ({ title, icon, items }) => (
   <div className="mt-6">
-    <h3 className="text-xl text-right font-medium text-[#9E9195] flex items-center">
-      {icon} <span className="mr-2">{title}</span>
+    <h3 className="text-3xl text-right font-medium text-[#9E9195] flex items-center">
+      {icon} <span className="mr-2 text-4xl ">{title}</span>
     </h3>
     <ul className="list-disc list-inside text-right text-lg text-[#9E9195]">
       {items.map((item, index) => (
@@ -48,12 +48,12 @@ const ServiceSection: React.FC<{ title: string; icon: React.ReactNode; items: st
 // Package Component
 const Package: React.FC<{ title: string; services: { title: string; icon: React.ReactNode; items: string[] }[] }> = ({ title, services }) => (
   <div className="bg-white rounded-lg shadow-lg p-6 mb-10 hover:shadow-xl transition-shadow duration-300" data-aos="fade-up">
-    <h2 className="text-2xl font-semibold text-[#BAAD87] text-right flex items-center">
-       ---------------------------
+    <h2 className="text-4xl font-semibold text-[#BAAD87] text-right flex items-center">
+       --------
          <br/>
         {title}
          <br/>
-      ---------------------------
+      ---------
     </h2>
     {services.map((service, index) => (
       <ServiceSection key={index} title={service.title} icon={service.icon} items={service.items} />
@@ -89,7 +89,7 @@ const PackageDetails: React.FC = () => (
         services={[
           {
             title: 'الكهرباء',
-            icon: <ElectricalIcon className="mr-2" />,
+            icon: <ElectricalIcon className="mr-2 text-3xl" />,
             items: [
               'تأسيس جميع الاسلاك السويدي الأصلي ⚡️.',
               'اسلاك 6 ملم للتكييفات والسخانات.',
@@ -103,7 +103,7 @@ const PackageDetails: React.FC = () => (
           },
           {
             title: 'السباكة',
-            icon: <BathIcon className="mr-2" />,
+            icon: <BathIcon className="mr-2 text-3xl" />,
             items: [
               'مواسير مياه بي آر الماني 🚰.',
               'صرف لبلاعات البلكونات وتأسيس مخارج فلتر.',
@@ -113,7 +113,7 @@ const PackageDetails: React.FC = () => (
           },
           {
             title: 'دهان وديكور',
-            icon: <PaintIcon className="mr-2" />,
+            icon: <PaintIcon className="mr-2 text-3xl" />,
             items: [
               'تجليخ الحوائط بحجر جلخ ⚒️.',
               'دهان مادة سيلر مائى لتثبيت الاسطح.',
@@ -122,7 +122,7 @@ const PackageDetails: React.FC = () => (
           },
           {
             title: 'محارة وجبس',
-            icon: <SettingsIcon className="mr-2" />,
+            icon: <SettingsIcon className="mr-2 text-3xl" />,
             items: [
               'محارة الموقع بالكامل علي الأداة 🛠️.',
               'تركيب اسلاك فواصل بين الجدران.',
@@ -137,7 +137,7 @@ const PackageDetails: React.FC = () => (
         services={[
           {
             title: 'الكهرباء',
-            icon: <ElectricalIcon className="mr-2" />,
+            icon: <ElectricalIcon className="mr-2 text-3xl" />,
             items: [
               'تأسيس جميع الاسلاك السويدي الأصلي ⚡️.',
               'اسلاك 6 ملم للتكييفات والسخانات.',
@@ -148,7 +148,7 @@ const PackageDetails: React.FC = () => (
           },
           {
             title: 'السباكة',
-            icon: <BathIcon className="mr-2" />,
+            icon: <BathIcon className="mr-2 text-3xl" />,
             items: [
               'مواسير مياه اكوا ثيرم 🚰.',
               'صرف لبلاعات البلكونات وتأسيس مخارج فلتر.',
@@ -157,7 +157,7 @@ const PackageDetails: React.FC = () => (
           },
           {
             title: 'دهان وديكور',
-            icon: <PaintIcon className="mr-2" />,
+            icon: <PaintIcon className="mr-2 text-3xl" />,
             items: [
               'تجليخ الحوائط بحجر جلخ ⚒️.',
               'دهان مادة سيلر مائى لتثبيت الاسطح.',
