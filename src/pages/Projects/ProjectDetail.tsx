@@ -109,6 +109,8 @@ const ProjectDetail: React.FC = () => {
         <meta property="twitter:title" content={project.name} />
         <meta property="twitter:description" content={project.description} />
         <meta property="twitter:image" content={project.image} />
+        <link rel="icon" href={project.image} />
+        <link rel="apple-touch-icon" href={project.image} />
       <link rel="icon" href={project.image}  />
 
         <link rel="icon" href={project.image} />
