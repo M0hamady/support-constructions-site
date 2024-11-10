@@ -51,7 +51,7 @@ const ImagePreviewPage: React.FC = () => {
         <meta name="description" content="Preview the selected image with optional filters." />
         <meta property="og:title" content="Image Preview" />
         <meta property="og:description" content="Preview the selected image with optional filters." />
-        <meta property="og:image" content={imageUrl} />
+        <meta property="og:image" content={imageUrl || 'path/to/default-image.jpg'} />
         <meta property="og:url" content={`${window.location.origin}${location.pathname}?image=${imageUrl}`} />
         <meta property="twitter:card" content="summary_large_image" />
       </Helmet>

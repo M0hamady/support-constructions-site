@@ -6,9 +6,8 @@ import BannerSection from '../../components/common/BannerSection';
 import { Banner } from '../../assets/images';
 
 // Import MUI icons
-import { ContentCopy, Facebook, Twitter, WhatsApp } from '@mui/icons-material';
+import { ContentCopy, Facebook, Twitter, WhatsApp, RotateRight } from '@mui/icons-material';
 
-// Modal Component to Display Image with Share Options
 const ProjectDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { projects, addCommentToSection } = useProjectContext();
@@ -16,6 +15,9 @@ const ProjectDetail: React.FC = () => {
 
   const [newComment, setNewComment] = useState<string>('');
   const [selectedSectionId, setSelectedSectionId] = useState<number | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [modalImage, setModalImage] = useState<string>('');
+  const [rotationAngle, setRotationAngle] = useState<number>(0);
 
   if (!project) {
     return <p className="text-center text-xl text-red-500">Project not found</p>;
@@ -35,7 +37,17 @@ const ProjectDetail: React.FC = () => {
   };
 
   const handleImageClick = (imageUrl: string) => {
-    window.location.href = `/image-preview?image=${encodeURIComponent(imageUrl)}`;
+    setModalImage(imageUrl);
+    setIsModalOpen(true);
+  };
+
+  const handleRotate = () => {
+    setRotationAngle(rotationAngle + 90); // Rotate by 90 degrees
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setRotationAngle(0); // Reset rotation angle when closing modal
   };
 
   return (
@@ -58,8 +70,8 @@ const ProjectDetail: React.FC = () => {
         <img
           src={project.image}
           alt={project.name}
-          className="w-full h-auto rounded-lg shadow-lg mb-8"
-          onClick={() => handleImageClick(project.image)} // Open in preview page
+          className="w-full h-auto rounded-lg shadow-lg mb-8 cursor-pointer"
+          onClick={() => handleImageClick(project.image)} // Open modal
         />
 
         {project.sections.map((section) => (
@@ -73,7 +85,7 @@ const ProjectDetail: React.FC = () => {
                       src={img.image}
                       alt={img.description}
                       className="absolute top-0 left-0 w-full h-full object-cover group-hover:opacity-80 transition-opacity duration-200 cursor-pointer"
-                      onClick={() => handleImageClick(img.image)} // Open in preview page
+                      onClick={() => handleImageClick(img.image)} // Open modal
                     />
                   </div>
                   <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black p-4">
@@ -85,6 +97,34 @@ const ProjectDetail: React.FC = () => {
           </div>
         ))}
       </div>
+
+      {/* Modal for image preview */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
+          <div className="relative max-w-full max-h-full p-4 overflow-auto bg-white rounded-lg shadow-lg">
+            <button
+              onClick={closeModal}
+              className="absolute top-2 right-2 text-white text-2xl p-1 bg-red-500 rounded-full"
+            >
+              &times;
+            </button>
+            <div className="relative">
+              <img
+                src={modalImage}
+                alt="Modal Preview"
+                className="w-full max-h-[80vh] object-contain"
+                style={{ transform: `rotate(${rotationAngle}deg)` }} // Apply rotation
+              />
+              <button
+                onClick={handleRotate}
+                className="absolute bottom-4 left-1/2 transform -translate-x-1/2 p-3 bg-blue-500 text-white rounded-full"
+              >
+                <RotateRight />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
