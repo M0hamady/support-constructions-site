@@ -5,20 +5,75 @@ import { useProjectContext } from '../../context/ProjectContext';
 import BannerSection from '../../components/common/BannerSection';
 import { Banner } from '../../assets/images';
 
-// Modal Component to Display Image
-const ImageModal: React.FC<{ image: string; onClose: () => void }> = ({ image, onClose }) => (
-  <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-    <div className="relative">
-      <img src={image} alt="Expanded" className="max-w-full max-h-full object-contain" />
-      <button
-        className="absolute top-4 right-4 text-white text-3xl"
-        onClick={onClose}
-      >
-        ×
-      </button>
+// Modal Component to Display Image with Share Options
+const ImageModal: React.FC<{ image: string; onClose: () => void }> = ({ image, onClose }) => {
+  const handleCopyToClipboard = () => {
+    navigator.clipboard.writeText(image).then(() => {
+      alert('Image URL copied to clipboard!');
+    });
+  };
+
+  const shareImage = (platform: string) => {
+    const url = encodeURIComponent(image);
+    let shareUrl = '';
+
+    switch (platform) {
+      case 'facebook':
+        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+        break;
+      case 'twitter':
+        shareUrl = `https://twitter.com/intent/tweet?url=${url}`;
+        break;
+      case 'whatsapp':
+        shareUrl = `https://wa.me/?text=${url}`;
+        break;
+      default:
+        break;
+    }
+
+    window.open(shareUrl, '_blank');
+  };
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+      <div className="relative bg-white p-6 rounded-lg shadow-lg">
+        <img src={image} alt="Expanded" className="max-w-full max-h-full object-contain mb-4" />
+        <button
+          className="absolute top-4 right-4 text-white text-3xl"
+          onClick={onClose}
+        >
+          ×
+        </button>
+        <div className="mt-4 flex justify-center gap-4">
+          <button
+            className="text-blue-500"
+            onClick={handleCopyToClipboard}
+          >
+            Copy URL
+          </button>
+          <button
+            className="text-blue-500"
+            onClick={() => shareImage('facebook')}
+          >
+            Share on Facebook
+          </button>
+          <button
+            className="text-blue-500"
+            onClick={() => shareImage('twitter')}
+          >
+            Share on Twitter
+          </button>
+          <button
+            className="text-green-500"
+            onClick={() => shareImage('whatsapp')}
+          >
+            Share on WhatsApp
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const ProjectDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
