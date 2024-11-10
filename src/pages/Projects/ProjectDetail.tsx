@@ -252,7 +252,7 @@ const ProjectDetail: React.FC = () => {
         ))}
       </div>
       {/* Sharing Options */}
-      <div className="flex gap-4 mb-6">
+      <div className="flex gap-4 mb-6 flex-wrap">
         <button
           onClick={handleShare}
           className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
