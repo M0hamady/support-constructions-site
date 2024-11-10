@@ -36,25 +36,28 @@ const ProjectDetail: React.FC = () => {
     if (!newComment.trim() || !phoneNumber.trim()) {
       return; // Ensure both comment and phone number are filled
     }
-  
+
     // Convert phone number to a number
     const phoneNumberAsNumber = parseInt(phoneNumber, 10);
-  
+
     // Check if the phone number is a valid number
     if (isNaN(phoneNumberAsNumber)) {
       alert("Please enter a valid phone number.");
       return;
     }
-  
+
     const commentData = { message: newComment, number: phoneNumberAsNumber }; // 'number' is now a number
     addCommentToSection(project.id, sectionId, commentData);
-  
+
     // Reset comment input states
     setNewComment("");
     setPhoneNumber("");
     setSelectedSectionId(null); // Deselect section
   };
-  
+  const handleNavigateToPreview = (imageUrl: string) => {
+    // Navigate to the ImagePreviewPage with the image URL as a query parameter
+    navigate(`/image-preview?image=${encodeURIComponent(imageUrl)}`);
+  };
 
   // Handle image click and show modal
   const handleImageClick = (imageUrl: string) => {
@@ -111,25 +114,6 @@ const ProjectDetail: React.FC = () => {
         <meta property="twitter:image" content={project.image} />
         <link rel="icon" href={project.image} />
         <link rel="apple-touch-icon" href={project.image} />
-      <link rel="icon" href={project.image}  />
-
-        <link rel="icon" href={project.image} />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Project",
-            "name": project.name,
-            "description": project.description,
-            "image": project.image,
-            "url": `${window.location.origin}/projects/${project.id}`,
-            "creator": { "@type": "Organization", "name": "Support Constructions" },
-            "author": { "@type": "Person", "name": "Project Creator" },
-            "sameAs": [
-              "https://www.facebook.com/supportconstructioneg",
-              "https://twitter.com/supportconstructioneg"
-            ]
-          })}
-        </script>
       </Helmet>
 
       <BannerSection backgroundImage={Banner} firstWord="تصافح جمال المشاريع" />
@@ -147,6 +131,20 @@ const ProjectDetail: React.FC = () => {
         {project.sections.map((section) => (
           <div key={section.id} className="mb-8 sm:mb-12">
             <h2 className="text-xl sm:text-2xl font-semibold text-gray-700 mb-2 sm:mb-4">{section.name}</h2>
+            
+            {/* Image Previews for Section */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-4">
+              {section.images && section.images.map((image, index) => (
+                <img
+                  key={index}
+                  src={image.image}
+                  alt={`Section Image ${index + 1}`}
+                  className="w-full h-32 object-cover rounded-lg cursor-pointer"
+                  onClick={() => handleImageClick(image.image)}
+                />
+              ))}
+            </div>
+
             <div className="bg-gray-100 p-4 sm:p-6 rounded-lg mb-4 sm:mb-6 shadow-md">
               {selectedSectionId === section.id ? (
                 <>
@@ -199,40 +197,50 @@ const ProjectDetail: React.FC = () => {
       </div>
 
       <div className="flex gap-2 flex-wrap mb-6">
-        <button onClick={handleShare} className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">
+        <button onClick={handleShare} className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600">
           <Share className="mr-2" /> Share
         </button>
-        <button onClick={() => navigator.clipboard.writeText(`${window.location.origin}/projects/${project.id}`)} className="flex items-center px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition">
-          <ContentCopy className="mr-2" /> Copy Link
-        </button>
-        <a href={sharingLinks.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition">
+        <a href={sharingLinks.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700">
           <Facebook className="mr-2" /> Facebook
         </a>
-        <a href={sharingLinks.twitter} target="_blank" rel="noopener noreferrer" className="flex items-center px-4 py-2 bg-blue-400 text-white rounded-lg hover:bg-blue-500 transition">
+        <a href={sharingLinks.twitter} target="_blank" rel="noopener noreferrer" className="flex items-center px-4 py-2 bg-blue-400 text-white rounded-lg shadow-md hover:bg-blue-500">
           <Twitter className="mr-2" /> Twitter
         </a>
-        <a href={sharingLinks.whatsapp} target="_blank" rel="noopener noreferrer" className="flex items-center px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
+        <a href={sharingLinks.whatsapp} target="_blank" rel="noopener noreferrer" className="flex items-center px-4 py-2 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600">
           <WhatsApp className="mr-2" /> WhatsApp
         </a>
       </div>
 
-      {/* Modal for image view */}
+      {/* Modal for Image View */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="relative bg-white rounded-lg p-6">
-            <button onClick={closeModal} className="absolute top-2 right-2 text-white text-2xl">&times;</button>
-            <img
-              src={modalImage}
-              alt="Project Detail"
-              style={{ transform: `rotate(${rotationAngle}deg)` }}
-              className="max-w-full max-h-screen"
-            />
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
+          <div className="relative max-w-full max-h-full p-4 overflow-auto bg-white rounded-lg shadow-lg">
             <button
-              onClick={handleRotate}
-              className="mt-4 px-4 py-2 bg-gray-700 text-white rounded-lg"
+              onClick={closeModal}
+              className="absolute top-2 right-2 text-white text-2xl p-1 bg-red-500 rounded-full z-20"
             >
-              <RotateRight className="mr-2" /> Rotate Image
+              &times;
             </button>
+            <div className="relative">
+              <img
+                src={modalImage}
+                alt="Modal Preview"
+                className="w-full max-h-[80vh] object-contain z-0"
+                style={{ transform: `rotate(${rotationAngle}deg)` }} // Apply rotation
+              />
+              <button
+                onClick={handleRotate}
+                className="absolute bottom-4 left-1/2 transform -translate-x-1/2 p-3 bg-blue-500 text-white rounded-full"
+              >
+                <RotateRight />
+              </button>
+              <button
+                onClick={() => handleNavigateToPreview(modalImage)} // Navigate to ImagePreviewPage
+                className="absolute bottom-16 left-1/2 transform -translate-x-1/2 p-3 bg-green-500 text-white rounded-full"
+              >
+                View Full Preview
+              </button>
+            </div>
           </div>
         </div>
       )}
