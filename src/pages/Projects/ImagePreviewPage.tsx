@@ -61,10 +61,10 @@ const ImagePreviewPage: React.FC = () => {
         <img
           src={imageUrl || ''}
           alt="Preview"
-          className="w-full h-auto rounded-lg shadow-lg mb-8"
+          className="w-full h-auto rounded-lg shadow-lg mb-8 z-10"
           style={filterStyle}
         />
-        <div className="flex gap-6">
+        <div className="flex gap-6 z-50">
           <div>
             <label className="block mb-2">Brightness</label>
             <input

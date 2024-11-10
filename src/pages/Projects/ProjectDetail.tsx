@@ -23,17 +23,14 @@ const ProjectDetail: React.FC = () => {
     return <p className="text-center text-xl text-red-500">Project not found</p>;
   }
 
-  // Handle adding a new comment
   const handleAddComment = (sectionId: number) => {
-    if (!newComment.trim()) {
-      return; // Do not add if the comment is empty
-    }
+    if (!newComment.trim()) return;
 
     const commentData = { message: newComment, number: Date.now() };
     addCommentToSection(project.id, sectionId, commentData);
 
-    setNewComment(''); // Clear the comment input after adding
-    setSelectedSectionId(null); // Deselect the section
+    setNewComment('');
+    setSelectedSectionId(null);
   };
 
   const handleImageClick = (imageUrl: string) => {
@@ -47,7 +44,26 @@ const ProjectDetail: React.FC = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setRotationAngle(0); // Reset rotation angle when closing modal
+    setRotationAngle(0);
+  };
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(modalImage);
+    alert('Image link copied to clipboard!');
+  };
+
+  const handleShare = (platform: 'facebook' | 'twitter' | 'whatsapp') => {
+    const encodedUrl = encodeURIComponent(modalImage);
+    let url = '';
+    if (platform === 'facebook') {
+      url = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
+    } else if (platform === 'twitter') {
+      url = `https://twitter.com/intent/tweet?url=${encodedUrl}`;
+    } else if (platform === 'whatsapp') {
+      url = `https://wa.me/?text=${encodedUrl}`;
+    }
+
+    window.open(url, '_blank');
   };
 
   return (
@@ -62,7 +78,7 @@ const ProjectDetail: React.FC = () => {
         <meta property="twitter:card" content="summary_large_image" />
       </Helmet>
 
-      <BannerSection backgroundImage={Banner} firstWord='تصافح جمال المشاريع' />
+      <BannerSection backgroundImage={Banner} firstWord="تصافح جمال المشاريع" />
       
       <div className="px-8 container mx-auto">
         <h1 className="text-4xl font-bold text-gray-800 mb-6">{project.name}</h1>
@@ -71,7 +87,7 @@ const ProjectDetail: React.FC = () => {
           src={project.image}
           alt={project.name}
           className="w-full h-auto rounded-lg shadow-lg mb-8 cursor-pointer"
-          onClick={() => handleImageClick(project.image)} // Open modal
+          onClick={() => handleImageClick(project.image)}
         />
 
         {project.sections.map((section) => (
@@ -85,7 +101,7 @@ const ProjectDetail: React.FC = () => {
                       src={img.image}
                       alt={img.description}
                       className="absolute top-0 left-0 w-full h-full object-cover group-hover:opacity-80 transition-opacity duration-200 cursor-pointer"
-                      onClick={() => handleImageClick(img.image)} // Open modal
+                      onClick={() => handleImageClick(img.image)}
                     />
                   </div>
                   <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black p-4">
@@ -101,26 +117,53 @@ const ProjectDetail: React.FC = () => {
       {/* Modal for image preview */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
-          <div className="relative max-w-full max-h-full p-4 overflow-auto bg-white rounded-lg shadow-lg">
+          <div className="relative w-full max-w-full sm:max-w-3xl max-h-full p-4 overflow-auto bg-white rounded-lg shadow-lg">
             <button
               onClick={closeModal}
-              className="absolute top-2 right-2 text-white text-2xl p-1 bg-red-500 rounded-full"
+              className="absolute top-2 right-2 text-white text-2xl p-1 bg-red-500 rounded-full z-20"
             >
               &times;
             </button>
-            <div className="relative">
+            <div className="relative w-full h-auto max-h-[80vh]">
               <img
                 src={modalImage}
                 alt="Modal Preview"
-                className="w-full max-h-[80vh] object-contain"
-                style={{ transform: `rotate(${rotationAngle}deg)` }} // Apply rotation
+                className="w-full h-auto object-contain max-h-[80vh] z-0"
+                style={{ transform: `rotate(${rotationAngle}deg)` }}
               />
               <button
                 onClick={handleRotate}
-                className="absolute bottom-4 left-1/2 transform -translate-x-1/2 p-3 bg-blue-500 text-white rounded-full"
+                className="absolute bottom-4 left-1/2 transform -translate-x-1/2 p-3 bg-blue-500 text-white rounded-full z-10"
               >
                 <RotateRight />
               </button>
+              {/* Share and Copy Options */}
+              <div className="absolute top-4 left-1/2 transform -translate-x-1/2 flex gap-4">
+                <button
+                  onClick={() => handleShare('facebook')}
+                  className="p-2 bg-blue-600 text-white rounded-full"
+                >
+                  <Facebook />
+                </button>
+                <button
+                  onClick={() => handleShare('twitter')}
+                  className="p-2 bg-blue-400 text-white rounded-full"
+                >
+                  <Twitter />
+                </button>
+                <button
+                  onClick={() => handleShare('whatsapp')}
+                  className="p-2 bg-green-500 text-white rounded-full"
+                >
+                  <WhatsApp />
+                </button>
+                <button
+                  onClick={handleCopyLink}
+                  className="p-2 bg-gray-600 text-white rounded-full"
+                >
+                  <ContentCopy />
+                </button>
+              </div>
             </div>
           </div>
         </div>
