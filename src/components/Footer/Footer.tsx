@@ -85,12 +85,28 @@ const Footer: React.FC = () => {
       >
         <div className="text-xl text-white mb-4">
           <p className="text-lg font-bold">مواقعنا:</p>
-          <div className="mb-2">الفرع الأول : المنصورة – برج الشربيني – الدور السابع</div>
-          <div>اكتوبر – امام مسجد الحصري – برج البرعي بلازا – الدور الثاني</div>
+          {/* <div className="mb-2">
+            الفرع الأول : المنصورة – برج الشربيني – الدور السابع
+          </div> */}
+          <div className="mb-2">
+            اكتوبر – <span className="block">
+              2G89+X9V فيلا 70 اللوتس الجنوبيه بجوار الكنيسه الانجيليه, New Cairo 1, Cairo Governorate 4743010
+            </span>
+          </div>
+          <div>
+            <a
+              href="https://www.google.com/maps/place/Support+Construction/@30.0174804,31.5184302,15z/data=!4m6!3m5!1s0x1458230066902075:0x4a453789aa4b326c!8m2!3d30.0174804!4d31.5184302!16s%2Fg%2F11w98f9d_2?entry=ttu&g_ep=EgoyMDI0MTEwNi4wIKXMDSoASAFQAw%3D%3D"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#baad87] hover:underline"
+            >
+              موقعنا على خرائط جوجل
+            </a>
+          </div>
         </div>
 
         {/* Terms of Use and Privacy Policy */}
-        <div className="text-sm text-white/75">
+        <div className="text-sm text-white/75 mb-4">
           <p>
             By using this site, you agree to the
             <a href="/terms-of-use" className="text-[#baad87] hover:underline">
@@ -102,6 +118,21 @@ const Footer: React.FC = () => {
             </a>.
           </p>
           <p>جميع الحقوق محفوظة.</p>
+        </div>
+
+        {/* Design Credit */}
+        <div className="text-sm text-white/50">
+          <p>
+            Designed and developed by{' '}
+            <a
+              href="https://www.codeocean.tech"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#baad87] hover:underline"
+            >
+              Code Ocean
+            </a>.
+          </p>
         </div>
       </div>
     </footer>
