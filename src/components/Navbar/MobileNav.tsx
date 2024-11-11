@@ -12,7 +12,7 @@ const Nav: React.FC = () => {
     { text: 'الرئيسية', to: '/', icon: <HomeIcon /> },
     { text: 'حول', to: '/about-us', icon: <InfoIcon /> },
     { text: 'تواصل', to: '/contact-us', icon: <ContactMailIcon /> },
-    { text: 'اتصال', to: 'tel:+00201555099233', icon: <PhoneIcon /> }, // Mobile call link
+    { text: 'اتصال', to: 'tel:+00201558585914', icon: <PhoneIcon /> }, // Mobile call link
     { text: 'الخدمات', to: '/services', icon: <ServicesIcon /> },
   ];
 
