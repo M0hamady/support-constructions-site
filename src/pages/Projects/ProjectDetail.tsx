@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { useProjectContext } from "../../context/ProjectContext";
@@ -12,6 +12,7 @@ import {
   RotateRight,
   Share,
 } from "@mui/icons-material";
+import Aos from "aos";
 
 const ProjectDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -25,7 +26,13 @@ const ProjectDetail: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalImage, setModalImage] = useState<string>("");
   const [rotationAngle, setRotationAngle] = useState<number>(0);
+  useEffect(() => {
+    // Initialize AOS for animations
+    Aos.init({ duration: 1000 });
 
+    // Scroll to top on initial load
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
   // Handle case where project is not found
   if (!project) {
     return <p className="text-center text-xl text-red-500">Project not found</p>;
