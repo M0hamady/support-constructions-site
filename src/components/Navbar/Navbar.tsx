@@ -116,7 +116,7 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className="bg-[#baad87] text-white px-4">
-      <div className="container mx-auto flex justify-between items-center">
+      <div className="container mx-auto flex  justify-between items-center" dir="rtl" >
         {/* Logo Section */}
         <div className="">
           <img className="w-[80px] h-[80px]" src={Logo} alt="Logo" />
