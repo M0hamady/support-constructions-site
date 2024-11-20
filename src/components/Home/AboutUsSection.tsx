@@ -22,9 +22,9 @@ const AboutUsSection: React.FC = () => {
               <div className="w-[150px] h-[150px] origin-top-left rotate-45 border-8 border-[#baad87] mb-[60px]"></div>
               <div className="flex flex-col justify-center items-center">
                 <div className="flex flex-col justify-center items-center">
-                  <div className="flex flex-col justify-center items-center gap-[2.90px]">
-                    <div className="text-center text-[#010101] text-[270px] font-bold font-['Tajawal'] leading-[189px]">
-                      8
+                  <div className="flex flex-col justify-center items-center gap-[2.90px] -translate-y-2/3 -translate-x-[38%]">
+                    <div className="text-center text-[#010101] text-[270px] font-bold font-['Tajawal'] leading-[189px] ">
+                      9
                     </div>
                     <div className="text-center text-[#010101] text-[86px] font-bold font-['Tajawal'] leading-[60.20px]">
                       سنوات

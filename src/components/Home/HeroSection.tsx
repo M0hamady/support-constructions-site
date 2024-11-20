@@ -10,14 +10,20 @@ const HeroSection: React.FC = () => {
 
   return (
     <section
-      className="w-full h-screen flex flex-col justify-center items-center relative bg-cover bg-center "
+      className="w-full h-screen flex flex-col justify-center items-center relative bg-cover bg-center overflow-hidden"
       style={{ backgroundImage: `url(${HeroImage})` }}
       aria-label="Hero section with construction services"
     >
+      {/* Background Animation */}
+      <div
+        className={`absolute inset-0 transition-transform duration-[2000ms] ${titleInView ? 'scale-100' : 'scale-110'}`}
+        style={{ backgroundImage: `url(${HeroImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+      />
+
       {/* Title Section */}
       <header 
         ref={titleRef} 
-        className={`w-full text-center px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 pt-20 z-10 transition-opacity duration-1000 ${titleInView ? 'opacity-100' : 'opacity-0'}`}
+        className={`w-full text-center px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 pt-20 z-10 transition-opacity duration-1000 ${titleInView ? 'opacity-100' : 'opacity-0 translate-y-10'}`}
       >
         <h1 className="text-white max-sm:text-3xl xl:text-2xl font-extrabold font-['Cairo'] leading-tight max-w-4xl border-b-2 pb-4 mx-auto mb-4">
           سابورت كونستركشن - شركة تشطيب في مصر بأفكار ابداعية مبتكرة
@@ -27,7 +33,7 @@ const HeroSection: React.FC = () => {
       {/* Description Section */}
       <div 
         ref={descRef} 
-        className={`w-full text-center px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 mt-6 z-10 max-sm:hidden transition-opacity duration-1000 ${descInView ? 'opacity-100' : 'opacity-0'}`}
+        className={`w-full text-center px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 mt-6 z-10 max-sm:hidden transition-opacity duration-1000 delay-200 ${descInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
       >
         <p className="text-white/90 text-sm sm:text-base md:text-lg lg:text-xl xl:text-xs font-normal font-['Cairo'] leading-relaxed max-w-4xl mx-auto mb-4">
           شركة سابورت كونستركشن احد افضل شركات تشطيب الشقق والفلل في مصر. لذلك تعد الطريقة المثالية لتصميم وتشطيب.
@@ -40,7 +46,7 @@ const HeroSection: React.FC = () => {
       {/* Call to Action and Button Section */}
       <div 
         ref={buttonRef} 
-        className={`w-full px-6 sm:px-12 z-10 md:px-16 lg:px-24 xl:px-32 py-8 flex flex-col sm:flex-row justify-center items-center gap-6 mb-10 max-sm:flex-row transition-opacity duration-1000 ${buttonInView ? 'opacity-100' : 'opacity-0'}`}
+        className={`w-full px-6 sm:px-12 z-10 md:px-16 lg:px-24 xl:px-32 py-8 flex flex-col sm:flex-row justify-center items-center gap-6 mb-10 max-sm:flex-row transition-opacity duration-1000 delay-400 ${buttonInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
       >
         <div className="w-full sm:w-auto mb-4 max-sm:m-0 sm:mb-0 flex justify-center">
           <Button
@@ -60,13 +66,13 @@ const HeroSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Background Overlay */}
+      {/* Overlay for Hero Section */}
       <div className="absolute inset-0 bg-black/50 z-0"></div>
 
-      {/* Lazy Loading Hidden Image */}
+      {/* Lazy Loading Hidden Image for Background */}
       <img
         src={HeroImage}
-        alt="Hero Image"
+        alt="Hero Background Image"
         loading="lazy"
         width="1000" // Replace with actual width of your image
         height="600" // Replace with actual height of your image

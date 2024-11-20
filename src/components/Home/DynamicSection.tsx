@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // For navigation
+import { Link, useNavigate } from 'react-router-dom'; // For navigation
 import { useProjectContext } from '../../context/ProjectContext';
 import { ArrowForward, Share } from '@mui/icons-material';
 
@@ -33,7 +33,7 @@ const DynamicSection: React.FC = () => {
 
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {projects.map((project) => (
-            <div
+            <Link to={`/project/${project.id}`}
               key={project.id}
               className="relative group w-full h-[400px] overflow-hidden rounded-lg shadow-lg"
             >
@@ -61,7 +61,7 @@ const DynamicSection: React.FC = () => {
                   </button>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

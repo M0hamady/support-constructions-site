@@ -2,13 +2,13 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 import axios from 'axios';
 
 // Define the types for Project, Section, Image, and Comment
-type Image = {
+export type Image = {
   id: number;
   image: string;
   description: string;
 };
 
-type Comment = {
+export type Comment = {
   id: number;
   number: number;
   message: string;
@@ -21,7 +21,7 @@ type Section = {
   comments: Comment[];
 };
 
-type Project = {
+export type Project = {
   id: number;
   name: string;
   description: string;

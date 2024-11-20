@@ -22,7 +22,6 @@ const DesktopNav = () => (
   </div>
 );
 
-
 const MobileNav = ({
   isOpen,
   toggleMenu,
@@ -47,49 +46,49 @@ const MobileNav = ({
       onClick={toggleMenu}
       className="text-xl font-bold hover:text-[#9E9195]"
     >
-      Home
+      الرئيسية
     </Link>
     <Link
       to="/about-us"
       onClick={toggleMenu}
       className="text-xl font-bold hover:text-[#9E9195]"
     >
-      About Us
+      من نحن
     </Link>
     <Link
       to="/services"
       onClick={toggleMenu}
       className="text-xl font-bold hover:text-[#9E9195]"
     >
-      Services
+      الخدمات
     </Link>
     <Link
       to="/projects"
       onClick={toggleMenu}
       className="text-xl font-bold hover:text-[#9E9195]"
     >
-      Projects
+      المشاريع
     </Link>
     <Link
       to="/prices"
       onClick={toggleMenu}
       className="text-xl font-bold hover:text-[#9E9195]"
     >
-      Prices
+      الأسعار
     </Link>
-    <Link
+    {/* <Link
       to="/topics"
       onClick={toggleMenu}
       className="text-xl font-bold hover:text-[#9E9195]"
     >
       Topics
-    </Link>
+    </Link> */}
     <Link
       to="/contact-us"
       onClick={toggleMenu}
       className="text-xl font-bold hover:text-[#9E9195]"
     >
-      Contact Us
+      تواصل معنا{" "}
     </Link>
   </div>
 );
@@ -116,7 +115,10 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className="bg-[#baad87] text-white px-4">
-      <div className="container mx-auto flex  justify-between items-center" dir="rtl" >
+      <div
+        className="container mx-auto flex  justify-between items-center"
+        dir="rtl"
+      >
         {/* Logo Section */}
         <div className="">
           <img className="w-[80px] h-[80px]" src={Logo} alt="Logo" />
@@ -127,11 +129,15 @@ const Navbar: React.FC = () => {
         <DesktopNav />
 
         {/* Mobile Hamburger Icon */}
-        <div className="md:hidden" >
+        <div className="md:hidden">
           <a href="tel:01003234531" aria-label="Call 01003234531">
             <CallOutlined />
           </a>{" "}
-          {isOpen ? <CloseIcon onClick={toggleMenu} /> : <MenuIcon  onClick={toggleMenu}/>}
+          {isOpen ? (
+            <CloseIcon onClick={toggleMenu} />
+          ) : (
+            <MenuIcon onClick={toggleMenu} />
+          )}
         </div>
       </div>
 
